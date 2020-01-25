@@ -1,0 +1,8 @@
+site_name: User Guide SUV
+docs_dir: doc/
+theme: 
+    name: 'material' 
+pages:
+- Home: index.md
+- About:
+    - Release Note: about/releaseNote.md
