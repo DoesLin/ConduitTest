@@ -1,20 +1,9 @@
 package conduit.test.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "TBL_USERS")
-public class DAOUser {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
+/*
+ * It is responsible for getting values from user and passing it to the DAO layer for inserting in database.
+ */
+public class DtoChefMagasin {
     private String username;
-    @Column
-    @JsonIgnore
     private String password;
 
     public String getUsername() {

@@ -1,9 +1,9 @@
 package conduit.test.model;
 
-public class User {
+public class Vendeur {
     private String status;
 
-    public User(String status) {
+    public Vendeur(String status) {
         this.status = status;
     }
 

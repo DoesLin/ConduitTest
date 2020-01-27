@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conduit.test.model.Employee;
-import conduit.test.model.User;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin()
@@ -18,13 +17,6 @@ public class TestController {
     public List<Employee> firstPage() {
         return employees;
     }
-
-
-//    @GetMapping(produces = "application/json")
-//    @RequestMapping({ "/validateLogin" })
-//    public User validateLogin() {
-//        return new User("User successfully authenticated");
-//    }
 
     @DeleteMapping(path = {"/{id}"})
     public Employee delete(@PathVariable("id") int id) {

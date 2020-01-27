@@ -1,9 +1,20 @@
 package conduit.test.model;
-/*
- * It is responsible for getting values from user and passing it to the DAO layer for inserting in database.
- */
-public class UserDto {
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "vendeur")
+public class DaoVendeur {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column
     private String username;
+    @Column
+    @JsonIgnore
     private String password;
 
     public String getUsername() {
