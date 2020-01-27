@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63ab9895-12d5-4e6c-aee5-c4399e903874" name="Default Changelist" comment="" />
+    <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="ProjectId" id="1WDAbJQzfpDg3jGE8xVBJLD4Jlj" />
+  <component name="ProjectId" id="1WnsCVlOkYeQORybcq3Hq3xNzc3" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="C:/Dev/Suv/m2m-suv-parent" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Utilisateurs\a764954\Documents\S9\CondTest\Dev\ConduitTest-parent" />
-    </key>
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.poratu.idea.plugins.tomcat.setting.TomcatSettingConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -36,8 +39,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="build" type="MavenRunConfiguration" factoryName="Maven">
+  <component name="RunManager" selected="Maven.ConduitTest-parent [clean]">
+    <configuration name="Run Appli" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="conduit.test.ConduitTestApplication" />
+      <module name="ConduitTest-parent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConduitTest-parent [clean]" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -49,6 +59,30 @@
             <option name="goals">
               <list>
                 <option value="clean" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConduitTest-parent [install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
                 <option value="install" />
               </list>
             </option>
@@ -63,17 +97,22 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Run Appli" />
+      <item itemvalue="Maven.ConduitTest-parent [install]" />
+      <item itemvalue="Maven.ConduitTest-parent [clean]" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="63ab9895-12d5-4e6c-aee5-c4399e903874" name="Default Changelist" comment="" />
-      <created>1578673861100</created>
+      <changelist id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="" />
+      <created>1579796565063</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1578673861100</updated>
+      <updated>1579796565063</updated>
     </task>
     <servers />
   </component>
