@@ -1,9 +1,14 @@
 package conduit.test.model;
 
-public class ChefMagasin {
+
+import java.util.List;
+
+public class ChefMagasin extends Account {
     private String status;
+    private List<Vendeur> listeVendeurs;
 
     public ChefMagasin(String status) {
+        super(status);
         this.status = status;
     }
 
@@ -13,6 +18,14 @@ public class ChefMagasin {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Vendeur> getListeVendeurs() {
+        return listeVendeurs;
+    }
+
+    public void setListeVendeurs(List<Vendeur> listeVendeurs) {
+        this.listeVendeurs = listeVendeurs;
     }
 
 }

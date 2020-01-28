@@ -1,12 +1,12 @@
 package conduit.test.model;
 
-public class Employee {
+public class EmployeeMock {
     private String empId;
     private String name;
     private String designation;
     private double salary;
 
-    public Employee() {
+    public EmployeeMock() {
     }
 
     public String getName() {
@@ -62,7 +62,7 @@ public class Employee {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Employee other = (Employee) obj;
+        EmployeeMock other = (EmployeeMock) obj;
         if (designation == null) {
             if (other.designation != null)
                 return false;

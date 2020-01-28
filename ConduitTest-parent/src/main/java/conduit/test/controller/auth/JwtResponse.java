@@ -1,4 +1,4 @@
-package conduit.test.model;
+package conduit.test.controller.auth;
 
 import java.io.Serializable;
 

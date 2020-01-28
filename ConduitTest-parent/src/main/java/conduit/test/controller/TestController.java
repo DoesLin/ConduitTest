@@ -3,7 +3,7 @@ package conduit.test.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import conduit.test.model.Employee;
+import conduit.test.model.EmployeeMock;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin()
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping({"/employees"})
 public class TestController {
 
-    private List<Employee> employees = createList();
+    private List<EmployeeMock> employeeMocks = createList();
 
     @GetMapping(produces = "application/json")
-    public List<Employee> firstPage() {
-        return employees;
+    public List<EmployeeMock> firstPage() {
+        return employeeMocks;
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public Employee delete(@PathVariable("id") int id) {
-        Employee deletedEmp = null;
-        for (Employee emp : employees) {
+    public EmployeeMock delete(@PathVariable("id") int id) {
+        EmployeeMock deletedEmp = null;
+        for (EmployeeMock emp : employeeMocks) {
             if (emp.getEmpId().equals(id)) {
-                employees.remove(emp);
+                employeeMocks.remove(emp);
                 deletedEmp = emp;
                 break;
             }
@@ -32,26 +32,26 @@ public class TestController {
     }
 
     @PostMapping
-    public Employee create(@RequestBody Employee user) {
-        employees.add(user);
+    public EmployeeMock create(@RequestBody EmployeeMock user) {
+        employeeMocks.add(user);
         return user;
     }
 
-    private static List<Employee> createList() {
-        List<Employee> tempEmployees = new ArrayList<>();
-        Employee emp1 = new Employee();
+    private static List<EmployeeMock> createList() {
+        List<EmployeeMock> tempEmployeeMocks = new ArrayList<>();
+        EmployeeMock emp1 = new EmployeeMock();
         emp1.setName("emp1");
         emp1.setDesignation("manager");
         emp1.setEmpId("1");
         emp1.setSalary(3000);
 
-        Employee emp2 = new Employee();
+        EmployeeMock emp2 = new EmployeeMock();
         emp2.setName("emp2");
         emp2.setDesignation("developer");
         emp2.setEmpId("2");
         emp2.setSalary(3000);
-        tempEmployees.add(emp1);
-        tempEmployees.add(emp2);
-        return tempEmployees;
+        tempEmployeeMocks.add(emp1);
+        tempEmployeeMocks.add(emp2);
+        return tempEmployeeMocks;
     }
 }

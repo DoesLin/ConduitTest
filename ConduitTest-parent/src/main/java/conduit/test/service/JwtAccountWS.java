@@ -2,9 +2,9 @@ package conduit.test.service;
 
 import java.util.ArrayList;
 
-import conduit.test.dao.IDaoVendeur;
-import conduit.test.model.DaoVendeur;
-import conduit.test.model.DtoVendeur;
+import conduit.test.dao.IDaoAccount;
+import conduit.test.dao.impl.DaoAccount;
+import conduit.test.dto.DtoAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,10 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtUserDetailsService implements UserDetailsService {
+public class JwtAccountWS implements UserDetailsService {
 
     @Autowired
-    private IDaoVendeur iDaoVendeur;
+    private IDaoAccount iDaoAccount;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
@@ -24,7 +24,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        DaoVendeur user = iDaoVendeur.findByUsername(username);
+        DaoAccount user = iDaoAccount.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
@@ -33,11 +33,11 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public DaoVendeur save(DtoVendeur user) {
-        DaoVendeur newUser = new DaoVendeur();
+    public DaoAccount save(DtoAccount user) {
+        DaoAccount newUser = new DaoAccount();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        return iDaoVendeur.save(newUser);
+        return iDaoAccount.save(newUser);
     }
 
 }

@@ -1,8 +1,8 @@
-package conduit.test.model;
+package conduit.test.dto;
 /*
  * It is responsible for getting values from user and passing it to the DAO layer for inserting in database.
  */
-public class DtoChefMagasin {
+public class DtoAccount {
     private String username;
     private String password;
 

@@ -1,10 +1,10 @@
 package conduit.test.controller;
 
 import conduit.test.config.JwtTokenUtil;
-import conduit.test.model.JwtRequest;
-import conduit.test.model.JwtResponse;
-import conduit.test.model.DtoVendeur;
-import conduit.test.service.JwtUserDetailsService;
+import conduit.test.controller.auth.JwtRequest;
+import conduit.test.controller.auth.JwtResponse;
+import conduit.test.dto.DtoAccount;
+import conduit.test.service.JwtAccountWS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +30,7 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private JwtUserDetailsService userDetailsService;
+    private JwtAccountWS userDetailsService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -46,8 +46,8 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody DtoVendeur user) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(user));
+    public ResponseEntity<?> saveVendeur(@RequestBody DtoAccount vendeur) throws Exception {
+        return ResponseEntity.ok(userDetailsService.save(vendeur));
     }
 
     private void authenticate(String username, String password) throws Exception {

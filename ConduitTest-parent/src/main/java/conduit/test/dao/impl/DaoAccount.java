@@ -1,19 +1,23 @@
-package conduit.test.model;
+package conduit.test.dao.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "vendeur")
-public class DaoVendeur {
+@Table(name = "account")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="role",
+        discriminatorType = DiscriminatorType.STRING)
+//@MappedSuperclass
+public class DaoAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+
     private String username;
-    @Column
+
     @JsonIgnore
     private String password;
 
