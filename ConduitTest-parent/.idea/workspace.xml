@@ -2,26 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/model/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/config/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/JwtAuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/JwtAuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/ChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/model/ChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/DaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/DtoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/DtoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/model/EmployeeMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/JwtRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/auth/JwtRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/auth/JwtResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/Vendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/model/Vendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/JwtUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/JwtAccountWS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/JwtAuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoChefMagasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoVendeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/JwtAccountWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,10 +45,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="conduit.test.controller" />
+      <recent name="conduit.test.service" />
       <recent name="conduit.test.dto" />
       <recent name="conduit.test.dao" />
       <recent name="conduit.test.dao.impl" />
-      <recent name="conduit.test.model" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -162,5 +153,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/conduit/test/controller/ProfileController.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

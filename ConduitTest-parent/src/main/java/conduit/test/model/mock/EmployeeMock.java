@@ -1,4 +1,4 @@
-package conduit.test.model;
+package conduit.test.model.mock;
 
 public class EmployeeMock {
     private String empId;

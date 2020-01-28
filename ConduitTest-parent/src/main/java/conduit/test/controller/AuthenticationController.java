@@ -4,7 +4,7 @@ import conduit.test.config.JwtTokenUtil;
 import conduit.test.controller.auth.JwtRequest;
 import conduit.test.controller.auth.JwtResponse;
 import conduit.test.dto.DtoAccount;
-import conduit.test.service.JwtAccountWS;
+import conduit.test.service.AccountDS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-public class JwtAuthenticationController {
+public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -30,14 +30,14 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private JwtAccountWS userDetailsService;
+    private AccountDS accountWS;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = userDetailsService
+        final UserDetails userDetails = accountWS
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -46,8 +46,8 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveVendeur(@RequestBody DtoAccount vendeur) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(vendeur));
+    public ResponseEntity<?> saveAccount(@RequestBody DtoAccount account) throws Exception {
+        return ResponseEntity.ok(accountWS.save(account));
     }
 
     private void authenticate(String username, String password) throws Exception {

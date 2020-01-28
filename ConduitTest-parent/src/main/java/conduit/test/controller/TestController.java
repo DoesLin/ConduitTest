@@ -3,7 +3,7 @@ package conduit.test.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import conduit.test.model.EmployeeMock;
+import conduit.test.model.mock.EmployeeMock;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin()

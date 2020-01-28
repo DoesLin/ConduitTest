@@ -6,9 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "account")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="role",
-        discriminatorType = DiscriminatorType.STRING)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="role",
+//        discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue("account")
 //@MappedSuperclass
 public class DaoAccount {
 
@@ -20,6 +21,10 @@ public class DaoAccount {
 
     @JsonIgnore
     private String password;
+
+    private String role;
+
+    private String managername;
 
     public String getUsername() {
         return username;
@@ -35,5 +40,26 @@ public class DaoAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getManagername() {
+        return managername;
+    }
+
+    public void setManagername(String managername) {
+        this.managername = managername;
+    }
+
+    @Override
+    public String toString() {
+        return "username: " + username + "\nrole: " + role + "\nmanagername: " + managername;
     }
 }
