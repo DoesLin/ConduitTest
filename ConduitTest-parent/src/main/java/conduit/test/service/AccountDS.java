@@ -51,7 +51,11 @@ public class AccountDS implements UserDetailsService {
         if (user.getRole().compareTo("Vendeur") == 0) {
             DaoVendeur newVendeur = new DaoVendeur();
             newVendeur.setUsername(user.getUsername());
-            newVendeur.setChefMagasin(iDaoChefMagasin.findByUsername(user.getManagername()));
+            DaoChefMagasin chefMagasin = iDaoChefMagasin.findByUsername(user.getManagername());
+            if (iDaoChefMagasin.findByUsername(user.getManagername()) == null) {
+                throw new UsernameNotFoundException("ChefMagasin not found with username: " + user.getManagername());
+            }
+            newVendeur.setChefMagasin(chefMagasin);
             iDaoVendeur.save(newVendeur);
         } else if (user.getRole().compareTo("ChefMagasin") == 0) {
             DaoChefMagasin newChefMagasin = new DaoChefMagasin();

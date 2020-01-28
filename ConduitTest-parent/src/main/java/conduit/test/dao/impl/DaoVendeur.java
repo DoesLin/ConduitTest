@@ -3,6 +3,7 @@ package conduit.test.dao.impl;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 //@DiscriminatorValue("vendeur")
@@ -15,6 +16,9 @@ public class DaoVendeur {
 
     private String username;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "vendeur")
+    private List<DaoArticle> listeArticles;
+
     @ManyToOne
     private DaoChefMagasin chefMagasin;
 
@@ -24,6 +28,14 @@ public class DaoVendeur {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<DaoArticle> getListeArticles() {
+        return listeArticles;
+    }
+
+    public void setListeArticles(List<DaoArticle> listeArticles) {
+        this.listeArticles = listeArticles;
     }
 
     public DaoChefMagasin getChefMagasin() {

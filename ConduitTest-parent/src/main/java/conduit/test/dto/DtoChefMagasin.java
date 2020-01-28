@@ -1,5 +1,7 @@
 package conduit.test.dto;
 
+import conduit.test.dao.impl.DaoChefMagasin;
+
 import java.util.List;
 
 /*
@@ -7,13 +9,29 @@ import java.util.List;
  */
 public class DtoChefMagasin extends DtoAccount {
 
-    private List<DtoVendeur> listeVendeurs;
+//    private List<DtoVendeur> listeVendeurs;
 
-    public List<DtoVendeur> getListeVendeurs() {
-        return listeVendeurs;
+    public DtoChefMagasin() {
+        super();
     }
 
-    public void setListeVendeurs(List<DtoVendeur> listeVendeurs) {
-        this.listeVendeurs = listeVendeurs;
+    /**
+     * Username, ..., ChefMagasin est copie aussi
+     * id, listeVendeurs ne sont pas copies
+     * @param chefMagasin
+     */
+    public DtoChefMagasin(DaoChefMagasin chefMagasin) {
+        super();
+        this.setUsername(chefMagasin.getUsername());
+        this.setManagername(null);
+        this.setRole("ChefMagasin");
     }
+
+//    public List<DtoVendeur> getListeVendeurs() {
+//        return listeVendeurs;
+//    }
+
+//    public void setListeVendeurs(List<DtoVendeur> listeVendeurs) {
+//        this.listeVendeurs = listeVendeurs;
+//    }
 }

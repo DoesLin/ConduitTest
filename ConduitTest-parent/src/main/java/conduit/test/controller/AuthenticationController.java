@@ -30,14 +30,14 @@ public class AuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private AccountDS accountWS;
+    private AccountDS accountDS;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = accountWS
+        final UserDetails userDetails = accountDS
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -47,7 +47,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveAccount(@RequestBody DtoAccount account) throws Exception {
-        return ResponseEntity.ok(accountWS.save(account));
+        return ResponseEntity.ok(accountDS.save(account));
     }
 
     private void authenticate(String username, String password) throws Exception {
