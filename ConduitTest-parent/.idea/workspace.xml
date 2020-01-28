@@ -2,25 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/VendeursController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoArticle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoArticle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoArticle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/mock/ArticleMock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/config/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/JwtTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ArticlesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoVendeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ArticlesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ArticlesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/AccountRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ArticleRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ChefMagasinRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/IDaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dao/impl/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoArticle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/mock/AccountMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/ChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/mock/ChefMagasinMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/Vendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/mock/VendeurMock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/model/mock/EmployeeMock.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +166,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/conduit/test/controller/ProfileController.java</url>
-          <line>23</line>
+          <line>22</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

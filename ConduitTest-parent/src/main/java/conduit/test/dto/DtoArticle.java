@@ -1,6 +1,6 @@
 package conduit.test.dto;
 
-import conduit.test.dao.impl.DaoArticle;
+import conduit.test.repository.dao.DaoArticle;
 
 public class DtoArticle {
 

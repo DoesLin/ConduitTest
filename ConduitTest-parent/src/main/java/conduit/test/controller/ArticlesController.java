@@ -1,10 +1,7 @@
 package conduit.test.controller;
 
-import conduit.test.dao.IDaoArticle;
-import conduit.test.dao.IDaoVendeur;
-import conduit.test.dao.impl.DaoArticle;
+import conduit.test.repository.dao.DaoArticle;
 import conduit.test.dto.DtoArticle;
-import conduit.test.mock.ArticleMock;
 import conduit.test.service.impl.ArticleWS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,24 +1,38 @@
 package conduit.test.service.impl;
 
-import conduit.test.dao.IDaoArticle;
-import conduit.test.dao.IDaoVendeur;
-import conduit.test.dao.impl.DaoArticle;
+import conduit.test.repository.AccountRepo;
+import conduit.test.repository.ArticleRepo;
+import conduit.test.repository.ChefMagasinRepo;
+import conduit.test.repository.VendeurRepo;
+import conduit.test.repository.dao.DaoAccount;
+import conduit.test.repository.dao.DaoArticle;
+import conduit.test.repository.dao.DaoChefMagasin;
+import conduit.test.repository.dao.DaoVendeur;
 import conduit.test.dto.DtoArticle;
-import conduit.test.dto.DtoVendeur;
 import conduit.test.service.IWebService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ArticleWS implements IWebService {
 
     @Autowired
-    private IDaoArticle iDaoArticle;
+    private ArticleRepo articleRepo;
     @Autowired
-    private IDaoVendeur iDaoVendeur;
+    private AccountRepo accountRepo;
+    @Autowired
+    private VendeurRepo vendeurRepo;
+    @Autowired
+    private ChefMagasinRepo chefMagasinRepo;
 
     @Override
     public DaoArticle create(Object object) {
@@ -32,15 +46,15 @@ public class ArticleWS implements IWebService {
         newArticle.setPrix(article.getPrix());
         newArticle.setQuantite(article.getQuantite());
 
-        newArticle.setVendeur(iDaoVendeur.findByUsername(article.getVendeurName()));
-        return iDaoArticle.save(newArticle);
+        newArticle.setVendeur(vendeurRepo.findByUsername(article.getVendeurName()));
+        return articleRepo.save(newArticle);
     }
 
     @Override
     public DaoArticle update(Object object) {
         DtoArticle article = (DtoArticle) object;
 
-        DaoArticle newArticle = iDaoArticle.findBySerial(article.getSerial());
+        DaoArticle newArticle = articleRepo.findBySerial(article.getSerial());
 
         newArticle.setSerial(article.getSerial());
         newArticle.setName(article.getName());
@@ -50,8 +64,8 @@ public class ArticleWS implements IWebService {
         newArticle.setQuantite(article.getQuantite());
 
 //        DtoVendeur vendeur = article.getVendeur();
-        newArticle.setVendeur(iDaoVendeur.findByUsername(article.getVendeurName()));
-        return iDaoArticle.save(newArticle);
+        newArticle.setVendeur(vendeurRepo.findByUsername(article.getVendeurName()));
+        return articleRepo.save(newArticle);
     }
 
     @Override
@@ -60,7 +74,7 @@ public class ArticleWS implements IWebService {
     }
 
     public DaoArticle getBySerial(String serial) {
-        return iDaoArticle.findBySerial(serial);
+        return articleRepo.findBySerial(serial);
     }
 
     @Override
@@ -69,12 +83,38 @@ public class ArticleWS implements IWebService {
     }
 
     public void delete(String serial) {
-        DaoArticle article = iDaoArticle.findBySerial(serial);
-        iDaoArticle.delete(article);
+        DaoArticle article = articleRepo.findBySerial(serial);
+        articleRepo.delete(article);
     }
 
     @Override
     public List<DaoArticle> getAlls() {
-        return iDaoArticle.findAll();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+
+        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+
+        if (account.getRole().compareTo("Vendeur") == 0) {
+            DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+            return articleRepo.findByVendeurId(vendeur.getId());
+        } else if (account.getRole().compareTo("ChefMagasin") == 0) {
+            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+            List<DaoVendeur> listVendeurs = chefMagasin.getListeVendeurs();
+//            List<DaoArticle> listArticles = new ArrayList<>();
+            List<List<DaoArticle>> listListArticles = new ArrayList<>();
+
+            for (DaoVendeur vendeur : listVendeurs) {
+                listListArticles.add(articleRepo.findByVendeurId(vendeur.getId()));
+            }
+//            listArticles = listListArticles.stream()
+//                    .flatMap(List::stream)
+//                    .collect(Collectors.toList());
+
+            return listListArticles.stream()
+                    .flatMap(List::stream)
+                    .collect(Collectors.toList());
+        } else {
+            return articleRepo.findAll();
+        }
     }
 }

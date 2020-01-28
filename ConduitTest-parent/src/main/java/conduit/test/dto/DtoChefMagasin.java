@@ -1,8 +1,6 @@
 package conduit.test.dto;
 
-import conduit.test.dao.impl.DaoChefMagasin;
-
-import java.util.List;
+import conduit.test.repository.dao.DaoChefMagasin;
 
 /*
  * It is responsible for getting values from user and passing it to the DAO layer for inserting in database.

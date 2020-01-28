@@ -2,12 +2,12 @@ package conduit.test.service;
 
 import java.util.ArrayList;
 
-import conduit.test.dao.IDaoAccount;
-import conduit.test.dao.IDaoChefMagasin;
-import conduit.test.dao.IDaoVendeur;
-import conduit.test.dao.impl.DaoAccount;
-import conduit.test.dao.impl.DaoChefMagasin;
-import conduit.test.dao.impl.DaoVendeur;
+import conduit.test.repository.AccountRepo;
+import conduit.test.repository.ChefMagasinRepo;
+import conduit.test.repository.VendeurRepo;
+import conduit.test.repository.dao.DaoAccount;
+import conduit.test.repository.dao.DaoChefMagasin;
+import conduit.test.repository.dao.DaoVendeur;
 import conduit.test.dto.DtoAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,11 +20,11 @@ import org.springframework.stereotype.Service;
 public class AccountDS implements UserDetailsService {
 
     @Autowired
-    private IDaoAccount iDaoAccount;
+    private AccountRepo accountRepo;
     @Autowired
-    private IDaoVendeur iDaoVendeur;
+    private VendeurRepo vendeurRepo;
     @Autowired
-    private IDaoChefMagasin iDaoChefMagasin;
+    private ChefMagasinRepo chefMagasinRepo;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
@@ -32,7 +32,7 @@ public class AccountDS implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        DaoAccount user = iDaoAccount.findByUsername(username);
+        DaoAccount user = accountRepo.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("Account not found with username: " + username);
@@ -51,19 +51,19 @@ public class AccountDS implements UserDetailsService {
         if (user.getRole().compareTo("Vendeur") == 0) {
             DaoVendeur newVendeur = new DaoVendeur();
             newVendeur.setUsername(user.getUsername());
-            DaoChefMagasin chefMagasin = iDaoChefMagasin.findByUsername(user.getManagername());
-            if (iDaoChefMagasin.findByUsername(user.getManagername()) == null) {
+            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getManagername());
+            if (chefMagasinRepo.findByUsername(user.getManagername()) == null) {
                 throw new UsernameNotFoundException("ChefMagasin not found with username: " + user.getManagername());
             }
             newVendeur.setChefMagasin(chefMagasin);
-            iDaoVendeur.save(newVendeur);
+            vendeurRepo.save(newVendeur);
         } else if (user.getRole().compareTo("ChefMagasin") == 0) {
             DaoChefMagasin newChefMagasin = new DaoChefMagasin();
             newChefMagasin.setUsername(user.getUsername());
-            iDaoChefMagasin.save(newChefMagasin);
+            chefMagasinRepo.save(newChefMagasin);
         }
 
-        return iDaoAccount.save(newUser);
+        return accountRepo.save(newUser);
     }
 
 }

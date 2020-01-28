@@ -1,6 +1,6 @@
 package conduit.test.service;
 
-import conduit.test.dao.impl.DaoArticle;
+import conduit.test.repository.dao.DaoArticle;
 
 import java.util.List;
 
