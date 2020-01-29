@@ -16,5 +16,13 @@ export class PdgComponent implements OnInit {
     }
   
     jquery_code() {
+
+      $(function() {
+        $("tbody tr").click(function() {
+         $(this).addClass("s1").siblings().removeClass("s1");
+         $(this).find(":radio").attr("checked", true);
+        });
+       });
+       
     }
 }

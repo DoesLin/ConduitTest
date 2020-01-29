@@ -9,17 +9,11 @@
             </ul>
                   
             <ul id="listIcons" class="right">
+               
                 <li>
-                    <a id="userDoc" target="_blank" href="{{documentationLink}}"
-                        class="tooltipped pull-down nav-top-section-title" data-position="bottom"
-                        data-tooltip="User Documentation">
-                        <i class="large material-icons">chrome_reader_mode</i>
-                    </a>
-                </li>
-                <li>
-                    <a id="bugDeclaration" href="mailto:{{teamDevMail}}"
-                        class="tooltipped pull-down nav-top-section-title" data-position="bottom"
-                        data-tooltip="Declare a bug">
+                    <a id="logout" href="/login"
+                       data-position="bottom"
+                        data-tooltip=" Logout">
                         <i class="large material-icons">bug_report</i>
                     </a>
                 </li>
@@ -52,10 +46,12 @@
         <img style="margin-top: 5%;" width="200" height="100"
             src="https://worldline.com/content/dam/gotomarket/logo/logo-worldline.png" class="responsive-img" />
     </li> -->
-    <li><a id="home" routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a id="home" routerLink="/vendeur" routerLinkActive="active">Home</a></li>
     <li><a id="project" routerLink="/login" routerLinkActive="active">Login</a></li>
-    
-    <li><a id="administration" routerLink="/administration" routerLinkActive="active">Administration</a></li>
+    <li><a id="project" routerLink="/vendeur" routerLinkActive="active">Vendeur</a></li>
+    <li><a id="project" routerLink="/cdm" routerLinkActive="active">Chef de magasin</a></li>
+    <li><a id="project" routerLink="/pdg" routerLinkActive="active"> PDG</a></li>
+  
     <!-- <li><a id="feature" routerLink="/feature" routerLinkActive="active">Feature</a></li>
     <li><a id="about" routerLink="/feature" routerLinkActive="active">About</a></li>
     <li><a id="contact" routerLink="/contact" routerLinkActive="active">Contact</a></li>

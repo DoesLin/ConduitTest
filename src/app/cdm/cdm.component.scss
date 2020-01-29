@@ -1,3 +1,19 @@
+/** 刀具列表tbody */
+.cuttingTbody{font-size: 14px;color: #46bcc1;position: absolute;top: 35px}
+/** 刀具列表高亮 */
+.hover{background-color: #016165;cursor:pointer;}
+/** 表格td 鼠标样式 */
+tbody td{cursor:pointer;}
+
+.s1 {
+    background-color:#b2b2be;
+}
+
+.tabs .tab a{
+    // font-size: 10px;
+    height: fit-content;
+    width: fit-content;
+}
 
 .table-action lighten-1 white-text{
     color:white;
