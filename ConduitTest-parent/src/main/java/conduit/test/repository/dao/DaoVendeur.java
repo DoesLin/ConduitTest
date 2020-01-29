@@ -1,6 +1,4 @@
-package conduit.test.dao.impl;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package conduit.test.repository.dao;
 
 import javax.persistence.*;
 import java.util.List;

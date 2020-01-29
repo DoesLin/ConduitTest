@@ -1,4 +1,4 @@
-package conduit.test.dao.impl;
+package conduit.test.repository.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

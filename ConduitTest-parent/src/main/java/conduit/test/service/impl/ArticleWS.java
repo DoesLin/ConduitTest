@@ -20,8 +20,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+/**
+ * Utilisation de stream pour la visualisation des articles !
+ */
 @Service
 public class ArticleWS implements IWebService {
 
@@ -38,34 +40,48 @@ public class ArticleWS implements IWebService {
     public DaoArticle create(Object object) {
         DtoArticle article = (DtoArticle) object;
 
-        DaoArticle newArticle = new DaoArticle();
-        newArticle.setSerial(article.getSerial());
-        newArticle.setName(article.getName());
-        newArticle.setCategorie(article.getCategorie());
-        newArticle.setDescription(article.getDescription());
-        newArticle.setPrix(article.getPrix());
-        newArticle.setQuantite(article.getQuantite());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+        DaoArticle newArticle = articleRepo.findByStatusAndVendeurId(article.getSerial(), vendeur.getId());
 
-        newArticle.setVendeur(vendeurRepo.findByUsername(article.getVendeurName()));
-        return articleRepo.save(newArticle);
+        if (article != null) {
+            newArticle.setSerial(article.getSerial());
+            newArticle.setName(article.getName());
+            newArticle.setCategorie(article.getCategorie());
+            newArticle.setDescription(article.getDescription());
+            newArticle.setPrix(article.getPrix());
+            newArticle.setQuantite(article.getQuantite());
+
+            newArticle.setVendeur(vendeur);
+            return articleRepo.save(newArticle);
+        } else {
+            return null;
+        }
     }
 
     @Override
     public DaoArticle update(Object object) {
         DtoArticle article = (DtoArticle) object;
 
-        DaoArticle newArticle = articleRepo.findBySerial(article.getSerial());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+        DaoArticle newArticle = articleRepo.findByStatusAndVendeurId(article.getSerial(), vendeur.getId());
 
-        newArticle.setSerial(article.getSerial());
-        newArticle.setName(article.getName());
-        newArticle.setCategorie(article.getCategorie());
-        newArticle.setDescription(article.getDescription());
-        newArticle.setPrix(article.getPrix());
-        newArticle.setQuantite(article.getQuantite());
+        if (article != null) {
+            newArticle.setSerial(article.getSerial());
+            newArticle.setName(article.getName());
+            newArticle.setCategorie(article.getCategorie());
+            newArticle.setDescription(article.getDescription());
+            newArticle.setPrix(article.getPrix());
+            newArticle.setQuantite(article.getQuantite());
 
-//        DtoVendeur vendeur = article.getVendeur();
-        newArticle.setVendeur(vendeurRepo.findByUsername(article.getVendeurName()));
-        return articleRepo.save(newArticle);
+            newArticle.setVendeur(vendeur);
+            return articleRepo.save(newArticle);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -74,7 +90,10 @@ public class ArticleWS implements IWebService {
     }
 
     public DaoArticle getBySerial(String serial) {
-        return articleRepo.findBySerial(serial);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+        return articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
     }
 
     @Override
@@ -83,8 +102,15 @@ public class ArticleWS implements IWebService {
     }
 
     public void delete(String serial) {
-        DaoArticle article = articleRepo.findBySerial(serial);
-        articleRepo.delete(article);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+        DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
+
+//        DaoArticle article = articleRepo.findBySerial(serial);
+        if (article != null) {
+            articleRepo.delete(article);
+        }
     }
 
     @Override
@@ -100,15 +126,11 @@ public class ArticleWS implements IWebService {
         } else if (account.getRole().compareTo("ChefMagasin") == 0) {
             DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
             List<DaoVendeur> listVendeurs = chefMagasin.getListeVendeurs();
-//            List<DaoArticle> listArticles = new ArrayList<>();
             List<List<DaoArticle>> listListArticles = new ArrayList<>();
 
             for (DaoVendeur vendeur : listVendeurs) {
                 listListArticles.add(articleRepo.findByVendeurId(vendeur.getId()));
             }
-//            listArticles = listListArticles.stream()
-//                    .flatMap(List::stream)
-//                    .collect(Collectors.toList());
 
             return listListArticles.stream()
                     .flatMap(List::stream)
