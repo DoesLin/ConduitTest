@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../service/authentication.service';
 
 declare function initDropdown(): any;
 declare function initTooltip(): any;
@@ -12,10 +13,7 @@ declare var $: any
 })
 export class NavbarComponent implements OnInit {
 
-  teamDevMail = "dlfr-development-m2m.ext@atos.net"
-  documentationLink = "https://kazan.priv.atos.fr/share/data/m2m-core/m2m-suv-parent"
-
-  constructor() { }
+  constructor(private loginService: AuthenticationService) { }
 
   ngOnInit() {
     initDropdown();

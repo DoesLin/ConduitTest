@@ -10,21 +10,22 @@ import { VendeurComponent } from './vendeur/vendeur.component';
 import { ArticleComponent } from './article/article.component';
 import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/article',
+    redirectTo: '/articles',
     pathMatch: 'full'
   }, {
     path: 'login',
     component: LoginComponent
   }, {
-    path: 'pdg',
-    component: PdgComponent,
-    canActivate: [AuthGaurdService],
-  }, {
+    //   path: 'logout',
+    //   component: LogoutComponent,
+    //   canActivate: [AuthGaurdService],
+    // }, {
     path: 'ajoutuser',
     component: AjoutuserComponent,
     canActivate: [AuthGaurdService],
@@ -33,16 +34,16 @@ const routes: Routes = [
     component: ModificationuserComponent,
     canActivate: [AuthGaurdService],
   }, {
-    path: 'cdm',
+    path: 'chefmagasins',
+    component: PdgComponent,
+    canActivate: [AuthGaurdService],
+  }, {
+    path: 'vendeurs',
     component: CdmComponent,
     canActivate: [AuthGaurdService],
   }, {
-    path: 'vendeur',
+    path: 'articles',
     component: VendeurComponent,
-    canActivate: [AuthGaurdService],
-  }, {
-    path: 'article',
-    component: ArticleComponent,
     canActivate: [AuthGaurdService],
   }, {
     path: 'cdmajout',

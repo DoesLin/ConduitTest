@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
+import { HttpClientService } from '../service/httpclient.service';
 
 declare var $: any
 
@@ -9,7 +9,8 @@ declare var $: any
   styleUrls: ['./vendeur.component.scss']
 })
 export class VendeurComponent implements OnInit {
-  constructor() { }
+  constructor(
+    private httpClientService: HttpClientService) { }
 
   ngOnInit() {
     this.jquery_code();
@@ -22,8 +23,6 @@ export class VendeurComponent implements OnInit {
         $(this).find(":radio").attr("checked", true);
       });
     });
-
-
 
   }
 }
