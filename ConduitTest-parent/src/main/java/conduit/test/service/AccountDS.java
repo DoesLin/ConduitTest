@@ -41,7 +41,7 @@ public class AccountDS implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public DaoAccount save(DtoAccount user) {
+    public DaoAccount create(DtoAccount user) throws Exception {
         DaoAccount newUser = new DaoAccount();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

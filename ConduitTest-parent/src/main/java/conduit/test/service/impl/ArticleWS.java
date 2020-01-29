@@ -15,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +36,18 @@ public class ArticleWS implements IWebService {
     private ChefMagasinRepo chefMagasinRepo;
 
     @Override
-    public DaoArticle create(Object object) {
+    public DaoArticle create(Object object) throws Exception {
         DtoArticle article = (DtoArticle) object;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
+
+        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+        if (account.getRole().compareTo("Vendeur") != 0) {
+            throw new Exception("Current user is not allowed!");
+        }
         DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        DaoArticle newArticle = articleRepo.findByStatusAndVendeurId(article.getSerial(), vendeur.getId());
+        DaoArticle newArticle = new DaoArticle();
 
         if (article != null) {
             newArticle.setSerial(article.getSerial());
@@ -56,16 +60,21 @@ public class ArticleWS implements IWebService {
             newArticle.setVendeur(vendeur);
             return articleRepo.save(newArticle);
         } else {
-            return null;
+            throw new Exception("Fail to create article!");
         }
     }
 
     @Override
-    public DaoArticle update(Object object) {
+    public DaoArticle update(Object object) throws Exception {
         DtoArticle article = (DtoArticle) object;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
+
+        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+        if (account.getRole().compareTo("Vendeur") != 0) {
+            throw new Exception("Current user is not allowed!");
+        }
         DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
         DaoArticle newArticle = articleRepo.findByStatusAndVendeurId(article.getSerial(), vendeur.getId());
 
@@ -80,13 +89,13 @@ public class ArticleWS implements IWebService {
             newArticle.setVendeur(vendeur);
             return articleRepo.save(newArticle);
         } else {
-            return null;
+            throw new Exception("Fail to create article!");
         }
     }
 
     @Override
     public DaoArticle getById(long id) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public DaoArticle getBySerial(String serial) {
@@ -98,23 +107,24 @@ public class ArticleWS implements IWebService {
 
     @Override
     public void delete(long id) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
-    public void delete(String serial) {
+    public void delete(String serial) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
         DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
         DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
 
-//        DaoArticle article = articleRepo.findBySerial(serial);
         if (article != null) {
             articleRepo.delete(article);
+        } else {
+            throw new Exception("Fail to delete article!");
         }
     }
 
     @Override
-    public List<DaoArticle> getAlls() {
+    public List<DaoArticle> getAlls() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
@@ -122,14 +132,14 @@ public class ArticleWS implements IWebService {
 
         if (account.getRole().compareTo("Vendeur") == 0) {
             DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-            return articleRepo.findByVendeurId(vendeur.getId());
+            return vendeur.getListeArticles();
         } else if (account.getRole().compareTo("ChefMagasin") == 0) {
             DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
             List<DaoVendeur> listVendeurs = chefMagasin.getListeVendeurs();
             List<List<DaoArticle>> listListArticles = new ArrayList<>();
 
             for (DaoVendeur vendeur : listVendeurs) {
-                listListArticles.add(articleRepo.findByVendeurId(vendeur.getId()));
+                listListArticles.add(vendeur.getListeArticles());
             }
 
             return listListArticles.stream()

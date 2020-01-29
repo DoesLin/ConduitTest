@@ -1,5 +1,7 @@
 package conduit.test.service.impl;
 
+import conduit.test.dto.DtoArticle;
+import conduit.test.dto.DtoVendeur;
 import conduit.test.repository.AccountRepo;
 import conduit.test.repository.ArticleRepo;
 import conduit.test.repository.ChefMagasinRepo;
@@ -8,12 +10,12 @@ import conduit.test.repository.dao.DaoAccount;
 import conduit.test.repository.dao.DaoArticle;
 import conduit.test.repository.dao.DaoChefMagasin;
 import conduit.test.repository.dao.DaoVendeur;
-import conduit.test.dto.DtoArticle;
 import conduit.test.service.IWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,13 +23,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Utilisation de stream pour la visualisation des articles !
+ * Utilisation de stream pour la visualisation des vendeurs !
  */
 @Service
-public class ArticleWS implements IWebService {
+public class VendeurWS implements IWebService {
 
-    @Autowired
-    private ArticleRepo articleRepo;
     @Autowired
     private AccountRepo accountRepo;
     @Autowired
@@ -35,118 +35,140 @@ public class ArticleWS implements IWebService {
     @Autowired
     private ChefMagasinRepo chefMagasinRepo;
 
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
+
     @Override
-    public DaoArticle create(Object object) throws Exception {
-        DtoArticle article = (DtoArticle) object;
+    public DaoVendeur create(Object object) throws Exception {
+        DtoVendeur vendeur = (DtoVendeur) object;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
         DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("Vendeur") != 0) {
-            throw new Exception("Current user is not a vendeur!");
+        if (account.getRole().compareTo("ChefMagasin") != 0) {
+            throw new Exception("Current user is not allowed!");
         }
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        DaoArticle newArticle = new DaoArticle();
+        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+        DaoVendeur newVendeur = new DaoVendeur();
 
-        if (article != null) {
-            newArticle.setSerial(article.getSerial());
-            newArticle.setName(article.getName());
-            newArticle.setCategorie(article.getCategorie());
-            newArticle.setDescription(article.getDescription());
-            newArticle.setPrix(article.getPrix());
-            newArticle.setQuantite(article.getQuantite());
+        if (vendeur != null) {
+            // Create account
+            DaoAccount newUser = new DaoAccount();
+            newUser.setUsername(vendeur.getUsername());
+            newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
+            newUser.setRole(vendeur.getRole());
+            newUser.setManagername(chefMagasin.getUsername());
+            accountRepo.save(newUser);
 
-            newArticle.setVendeur(vendeur);
-            return articleRepo.save(newArticle);
+            // Create vendeur
+            newVendeur.setUsername(vendeur.getUsername());
+            newVendeur.setListeArticles(new ArrayList<DaoArticle>());
+            newVendeur.setChefMagasin(chefMagasin);
+            return vendeurRepo.save(newVendeur);
         } else {
-            throw new Exception("Fail to create article!");
+            throw new Exception("Fail to create vendeur!");
         }
     }
 
     @Override
-    public DaoArticle update(Object object) throws Exception {
-        DtoArticle article = (DtoArticle) object;
+    public DaoVendeur update(Object object) throws Exception {
+        DtoVendeur vendeur = (DtoVendeur) object;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
         DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("Vendeur") != 0) {
-            throw new Exception("Current user is not a vendeur!");
+        if (account.getRole().compareTo("ChefMagasin") != 0) {
+            throw new Exception("Current user is not allowed!");
         }
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        DaoArticle newArticle = articleRepo.findByStatusAndVendeurId(article.getSerial(), vendeur.getId());
+        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+        DaoVendeur newVendeur = vendeurRepo.findByUsername(vendeur.getUsername());
 
-        if (article != null) {
-            newArticle.setSerial(article.getSerial());
-            newArticle.setName(article.getName());
-            newArticle.setCategorie(article.getCategorie());
-            newArticle.setDescription(article.getDescription());
-            newArticle.setPrix(article.getPrix());
-            newArticle.setQuantite(article.getQuantite());
+        if (vendeur != null) {
+            // Update account
+            DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
+//        newUser.setUsername(vendeur.getUsername());
+            newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
+//        newUser.setRole(vendeur.getRole());
+            newUser.setManagername(chefMagasin.getUsername());
+            accountRepo.save(newUser);
 
-            newArticle.setVendeur(vendeur);
-            return articleRepo.save(newArticle);
+            // Update vendeur
+            newVendeur.setUsername(vendeur.getUsername());
+            List<DaoArticle> listeArticles = new ArrayList<>();
+            List<DtoArticle> listDtoArticles = vendeur.getListeArticles();
+            for (DtoArticle article : listDtoArticles) {
+                DaoArticle newArticle = new DaoArticle();
+                newArticle.setSerial(article.getSerial());
+                newArticle.setName(article.getName());
+                newArticle.setCategorie(article.getCategorie());
+                newArticle.setDescription(article.getDescription());
+                newArticle.setPrix(article.getPrix());
+                newArticle.setQuantite(article.getQuantite());
+
+                newArticle.setVendeur(newVendeur);
+                listeArticles.add(newArticle);
+            }
+            newVendeur.setListeArticles(listeArticles);
+            newVendeur.setChefMagasin(chefMagasin);
+            return vendeurRepo.save(newVendeur);
         } else {
-            throw new Exception("Fail to create article!");
+            throw new Exception("Fail to create vendeur!");
         }
     }
 
     @Override
-    public DaoArticle getById(long id) {
-        throw new UnsupportedOperationException();
-    }
-
-    public DaoArticle getBySerial(String serial) {
+    public DaoVendeur getById(long id) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        return articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
+        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+        if (account.getRole().compareTo("ChefMagasin") != 0) {
+            throw new Exception("Current user is not allowed!");
+        }
+        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+
+        return vendeurRepo.findByIdAndChefMagasinId(id, chefMagasin.getId());
     }
 
     @Override
-    public void delete(long id) {
-        throw new UnsupportedOperationException();
-    }
+    public void delete(long id) throws Exception {
 
-    public void delete(String serial) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
+        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+        if (account.getRole().compareTo("ChefMagasin") != 0) {
+            throw new Exception("Current user is not allowed!");
+        }
+        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
-        if (article != null) {
-            articleRepo.delete(article);
+        DaoVendeur vendeur = vendeurRepo.findByIdAndChefMagasinId(id, chefMagasin.getId());
+        if (vendeur != null) {
+            // Delete account
+            DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
+            accountRepo.delete(newUser);
+
+            // Delete vendeur
+            vendeurRepo.delete(vendeur);
         } else {
-            throw new Exception("Fail to delete article!");
+            throw new Exception("Fail to delete vendeur!");
         }
     }
 
     @Override
-    public List<DaoArticle> getAlls() {
+    public List<DaoVendeur> getAlls() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
         DaoAccount account = accountRepo.findByUsername(user.getUsername());
 
         if (account.getRole().compareTo("Vendeur") == 0) {
-            DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-            return articleRepo.findByVendeurId(vendeur.getId());
+            throw new Exception("Current user is not allowed!");
         } else if (account.getRole().compareTo("ChefMagasin") == 0) {
             DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
-            List<DaoVendeur> listVendeurs = chefMagasin.getListeVendeurs();
-            List<List<DaoArticle>> listListArticles = new ArrayList<>();
-
-            for (DaoVendeur vendeur : listVendeurs) {
-                listListArticles.add(articleRepo.findByVendeurId(vendeur.getId()));
-            }
-
-            return listListArticles.stream()
-                    .flatMap(List::stream)
-                    .collect(Collectors.toList());
+            return chefMagasin.getListeVendeurs();
         } else {
-            return articleRepo.findAll();
+            return vendeurRepo.findAll();
         }
     }
 }

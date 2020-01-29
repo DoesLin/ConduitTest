@@ -3,7 +3,10 @@ package conduit.test.controller;
 import conduit.test.repository.dao.DaoArticle;
 import conduit.test.dto.DtoArticle;
 import conduit.test.service.impl.ArticleWS;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,38 +17,58 @@ import java.util.List;
 @RequestMapping({"/articles"})
 public class ArticlesController {
 
-
     @Autowired
     private ArticleWS articleWS;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 //    private List<ArticleMock> articleMocks = createList();
 
     @GetMapping(produces = "application/json")
-    public List<DtoArticle> firstPage() {
-        List<DtoArticle> listArticles = new ArrayList<DtoArticle>();
+    public ResponseEntity<?> display() {
+        try {
+            List<DtoArticle> listArticles = new ArrayList<DtoArticle>();
 
-        List<DaoArticle> listDaoArticles = articleWS.getAlls();
-        for (DaoArticle daoArticle : listDaoArticles) {
-            DtoArticle article = new DtoArticle(daoArticle);
-            listArticles.add(article);
+            List<DaoArticle> listDaoArticles = articleWS.getAlls();
+            for (DaoArticle daoArticle : listDaoArticles) {
+                DtoArticle article = new DtoArticle(daoArticle);
+                listArticles.add(article);
+            }
+
+            return ResponseEntity.ok(listArticles);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return ResponseEntity.ok(null);
         }
-
-        return listArticles;
     }
 
     @DeleteMapping(path = {"/{serial}"})
     public void delete(@PathVariable("serial") String serial) {
-        articleWS.delete(serial);
+        try {
+            articleWS.delete(serial);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
     }
 
     @PostMapping
-    public DtoArticle create(@RequestBody DtoArticle article) {
-        return new DtoArticle(articleWS.create(article));
+    public ResponseEntity<?> create(@RequestBody DtoArticle article) {
+        try {
+            return ResponseEntity.ok(new DtoArticle(articleWS.create(article)));
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return ResponseEntity.ok(null);
+        }
     }
 
     @PutMapping
-    public DtoArticle update(@RequestBody DtoArticle article) {
-        return new DtoArticle(articleWS.update(article));
+    public ResponseEntity<?> update(@RequestBody DtoArticle article) {
+        try {
+            return ResponseEntity.ok(new DtoArticle(articleWS.update(article)));
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return ResponseEntity.ok(null);
+        }
     }
 
 //    private static List<ArticleMock> createList() {

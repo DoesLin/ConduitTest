@@ -9,11 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ArticleRepo extends JpaRepository<DaoArticle, Integer> {
+public interface ArticleRepo extends JpaRepository<DaoArticle, Long> {
 
     DaoArticle findBySerial(String serial);
-
-    List<DaoArticle> findByVendeurId(Long id);
 
     @Query(value = "SELECT * FROM article a WHERE a.serial = :serial and a.vendeur_id = :vendeur_id",
             nativeQuery = true)
