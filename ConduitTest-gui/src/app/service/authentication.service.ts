@@ -27,7 +27,8 @@ export class AuthenticationService {
   }
 
   authenticate(username, password) {
-    return this.httpClient.post<any>('http://localhost:8080/authenticate', { username, password }).pipe(
+    let respon = this.httpClient.post<any>('http://localhost:8080/authenticate', { username, password })
+    return respon.pipe(
       map(
         userData => {
           sessionStorage.setItem('username', username);
@@ -43,7 +44,6 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
     return !(user === null)
   }
 

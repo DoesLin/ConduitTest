@@ -12,13 +12,14 @@ import { PdgComponent } from './pdg/pdg.component';
 import { AjoutuserComponent } from './ajoutuser/ajoutuser.component';
 import { ModificationuserComponent } from './modificationuser/modificationuser.component';
 import { CdmComponent } from './cdm/cdm.component';
-import { VendeurComponent } from './vendeur/vendeur.component';
-import { ArticleComponent } from './article/article.component';
+import { ArticlesComponent } from './articles/articles.component';
 import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
+import { ArticleModifComponent } from './article-modif/article-modif.component';
 
 
 
@@ -34,10 +35,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AjoutuserComponent,
     ModificationuserComponent,
     CdmComponent,
-    VendeurComponent,
-    ArticleComponent,
+    ArticlesComponent,
     CdmajoutComponent,
     LogoutComponent,
+    ArticleAjoutComponent,
+    ArticleModifComponent,
   ],
   imports: [
     BrowserModule,

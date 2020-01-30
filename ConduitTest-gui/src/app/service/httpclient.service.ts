@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-export class Employee {
+export class Article {
   constructor(
-    public empId: string,
+    public serial: string,
     public name: string,
-    public designation: string,
-    public salary: string,
+    public categorie: string,
+    public description: string,
+    public prix: number,
+    public quantite: number,
+    public vendeurName: string,
   ) { }
 }
 
@@ -15,23 +18,27 @@ export class Employee {
 })
 export class HttpClientService {
 
-  EmployeeUrl = 'http://localhost:8080/employees';
+  ArticleUrl = 'http://localhost:8080/articles';
 
   constructor(
     private httpClient: HttpClient
   ) {
   }
 
-  getEmployees() {
-    return this.httpClient.get<Employee[]>(this.EmployeeUrl);
+  getArticles() {
+    return this.httpClient.get<Article[]>(this.ArticleUrl);
   }
 
-  public deleteEmployee(employee) {
-    return this.httpClient.delete<Employee>(this.EmployeeUrl + "/" + employee.empId);
+  public createArticle(article) {
+    return this.httpClient.post<Article>(this.ArticleUrl, article);
   }
 
-  public createEmployee(employee) {
-    return this.httpClient.post<Employee>(this.EmployeeUrl, employee);
+  public modifyArticle(article) {
+    return this.httpClient.put<Article>(this.ArticleUrl, article);
+  }
+
+  public deleteArticle(article) {
+    return this.httpClient.delete<Article>(this.ArticleUrl + "/" + article.serial);
   }
 
 }

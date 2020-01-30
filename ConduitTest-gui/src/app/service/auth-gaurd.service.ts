@@ -16,7 +16,7 @@ export class AuthGaurdService implements CanActivate {
     }
 
     this.router.navigate(['login']);
-    alert('Please login first')
+    alert('Please login first');
     return false;
   }
 

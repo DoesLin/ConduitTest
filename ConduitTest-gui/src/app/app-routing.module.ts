@@ -6,11 +6,12 @@ import { PdgComponent } from './pdg/pdg.component';
 import { AjoutuserComponent } from './ajoutuser/ajoutuser.component';
 import { ModificationuserComponent } from './modificationuser/modificationuser.component';
 import { CdmComponent } from './cdm/cdm.component';
-import { VendeurComponent } from './vendeur/vendeur.component';
-import { ArticleComponent } from './article/article.component';
+import { ArticlesComponent } from './articles/articles.component';
 import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
 import { LogoutComponent } from './logout/logout.component';
+import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
+import { ArticleModifComponent } from './article-modif/article-modif.component';
 
 
 const routes: Routes = [
@@ -22,10 +23,22 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   }, {
-    //   path: 'logout',
-    //   component: LogoutComponent,
-    //   canActivate: [AuthGaurdService],
-    // }, {
+    path: 'logout',
+    component: LogoutComponent,
+    canActivate: [AuthGaurdService],
+  }, {
+    path: 'articles',
+    component: ArticlesComponent,
+    canActivate: [AuthGaurdService],
+  }, {
+    path: 'article-ajout',
+    component: ArticleAjoutComponent,
+    canActivate: [AuthGaurdService],
+  }, {
+    path: 'article-modif',
+    component: ArticleModifComponent,
+    canActivate: [AuthGaurdService],
+  }, {
     path: 'ajoutuser',
     component: AjoutuserComponent,
     canActivate: [AuthGaurdService],
@@ -40,10 +53,6 @@ const routes: Routes = [
   }, {
     path: 'vendeurs',
     component: CdmComponent,
-    canActivate: [AuthGaurdService],
-  }, {
-    path: 'articles',
-    component: VendeurComponent,
     canActivate: [AuthGaurdService],
   }, {
     path: 'cdmajout',

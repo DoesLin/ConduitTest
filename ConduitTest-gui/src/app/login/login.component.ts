@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.invalidLogin = true
-
+        var msg = error['error']['message']
+        alert('Login fail: ' + msg.split(";")[0])
       }
     )
     );
