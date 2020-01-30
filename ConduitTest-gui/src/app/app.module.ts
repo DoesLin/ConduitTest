@@ -6,12 +6,11 @@ import { AppComponent } from './app.component';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PdgComponent } from './pdg/pdg.component';
 import { AjoutuserComponent } from './ajoutuser/ajoutuser.component';
 import { ModificationuserComponent } from './modificationuser/modificationuser.component';
-import { CdmComponent } from './cdm/cdm.component';
+import { VendeursComponent } from './vendeurs/vendeurs.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +19,8 @@ import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-inter
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
 import { ArticleModifComponent } from './article-modif/article-modif.component';
+import { VendeurAjoutComponent } from './vendeur-ajout/vendeur-ajout.component';
+import { VendeurModifComponent } from './vendeur-modif/vendeur-modif.component';
 
 
 
@@ -29,17 +30,18 @@ import { ArticleModifComponent } from './article-modif/article-modif.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    HomeComponent,
     LoginComponent,
     PdgComponent,
     AjoutuserComponent,
     ModificationuserComponent,
-    CdmComponent,
+    VendeursComponent,
     ArticlesComponent,
     CdmajoutComponent,
     LogoutComponent,
     ArticleAjoutComponent,
     ArticleModifComponent,
+    VendeurAjoutComponent,
+    VendeurModifComponent,
   ],
   imports: [
     BrowserModule,

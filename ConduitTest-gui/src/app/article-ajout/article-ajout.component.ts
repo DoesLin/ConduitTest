@@ -18,17 +18,26 @@ export class ArticleAjoutComponent implements OnInit {
   }
 
   addArticle(): void {
-    this.httpClientService.createArticle(this.article)
-      .subscribe(
-        data => {
-          alert("Article created successfully.");
-          this.router.navigate([''])
-        },
-        error => {
-          var msg = error['error']['message']
-          alert('Creation fail: ' + msg.split(";")[0])
-        });
-
+    if (this.article.serial == '' || this.article.serial == null) {
+      alert("Article serial is empty.");
+    } else if (this.article.name == '' || this.article.name == null) {
+      alert("Article name is empty.");
+    } else if (this.article.categorie == '' || this.article.categorie == null) {
+      alert("Article categorie is empty.");
+    } else if (this.article.description == '' || this.article.description == null) {
+      alert("Article description is empty.");
+    } else {
+      this.httpClientService.createArticle(this.article)
+        .subscribe(
+          data => {
+            alert("Article created successfully.");
+            this.router.navigate([''])
+          },
+          error => {
+            var msg = error['error']['message']
+            alert('Creation fail: ' + msg.split(";")[0])
+          });
+    }
   }
 
   annuler(): void {

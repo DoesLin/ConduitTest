@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col s12 m8 l4 offset-m2 offset-l4">
+
+        <h4>Modification</h4>
+        <br>
+        <form>
+            <fieldset>
+
+                <p>Username: <input type="text" [(ngModel)]="vendeur.username" placeholder="Username" name="username"
+                        class="form-control" id="username" #username="ngModel"></p>
+                <div *ngIf="!username.value" style="color:red;">
+                    Username is empty
+                </div>
+                <p>Password: <input type="password" [(ngModel)]="vendeur.password" placeholder="Password"
+                        name="password" class="form-control" id="password" #password="ngModel"> </p>
+                <div *ngIf="!password.value" style="color:red;">
+                    Password is empty
+                </div>
+            </fieldset>
+            <br>
+            <div class="form-group" data-toggle="buttons" align="center">
+                <button class="btn btn-success" (click)="modifyVendeur()" style=" margin:5px;">Modifier</button>
+                <button class="btn btn-success" (click)="annuler()" style=" margin:5px;">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,33 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService, Article } from '../service/httpclient.service';
+import { HttpClientService, Vendeur } from '../service/httpclient.service';
 import { Router } from '@angular/router';
 import { ArticleDataService } from '../service/article-data.service';
+import { VendeurDataService } from '../service/vendeur-data.service';
 
 declare var $: any
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+  selector: 'app-vendeurs',
+  templateUrl: './vendeurs.component.html',
+  styleUrls: ['./vendeurs.component.scss']
 })
-export class ArticlesComponent implements OnInit {
+export class VendeursComponent implements OnInit {
 
-  articles: Article[];
-  articleModif = new Article('', '', '', '', 0, 0, null);
+  vendeurs: Vendeur[];
+  vendeurModif = new Vendeur('', '', '');
 
   constructor(private router: Router,
     private httpClientService: HttpClientService,
-    private articledata: ArticleDataService) { }
+    private vendeurdata: VendeurDataService) { }
 
   ngOnInit() {
     this.jquery_code();
-    this.httpClientService.getArticles().subscribe(
+    this.httpClientService.getVendeurs().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
-    this.articledata.currentArticle.subscribe(articleModif => this.articleModif = articleModif);
+    this.vendeurdata.currentVendeur.subscribe(vendeurModif => this.vendeurModif = vendeurModif);
+
   }
 
   jquery_code() {
+
     $(function () {
       $("tbody tr").click(function () {
         $(this).addClass("s1").siblings().removeClass("s1");
@@ -37,22 +40,23 @@ export class ArticlesComponent implements OnInit {
   }
 
   handleSuccessfulResponse(response) {
-    this.articles = response;
+    this.vendeurs = response;
   }
 
-  addArticle(): void {
-    this.router.navigate(['article-ajout']);
+  addVendeur(): void {
+    this.router.navigate(['vendeur-ajout']);
   };
 
-  modifyArticle(article: Article): void {
-    this.articledata.changeArticle(article)
-    this.router.navigate(['article-modif']);
+  modifyVendeur(vendeur: Vendeur): void {
+    this.vendeurdata.changeVendeur(vendeur)
+    this.router.navigate(['vendeur-modif']);
   };
 
-  deleteArticle(article: Article): void {
-    this.httpClientService.deleteArticle(article)
+  deleteVendeur(vendeur: Vendeur): void {
+    console.log(vendeur);
+    this.httpClientService.deleteVendeur(vendeur)
       .subscribe(data => {
-        this.articles = this.articles.filter(u => u !== article);
+        this.vendeurs = this.vendeurs.filter(u => u !== vendeur);
       })
   };
 

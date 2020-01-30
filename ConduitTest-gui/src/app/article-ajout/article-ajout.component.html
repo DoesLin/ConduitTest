@@ -29,13 +29,13 @@
                 </div>
                 <p>Prix: <input type="text" [(ngModel)]="article.prix" placeholder="Prix" name="prix"
                         class="form-control" id="prix" #prix="ngModel"></p>
-                <div *ngIf="!prix.value" style="color:red;">
-                    Prix is empty
+                <div *ngIf="!prix.value" style="color:yellow;">
+                    Prix is empty(zero by default)
                 </div>
                 <p>Quantite: <input type="text" [(ngModel)]="article.quantite" placeholder="Quantite" name="quantite"
                         class="form-control" id="quantite" #quantite="ngModel"></p>
-                <div *ngIf="!quantite.value" style="color:red;">
-                    Quantite is empty
+                <div *ngIf="!quantite.value" style="color:yellow;">
+                    Quantite is empty(zero by default)
                 </div>
 
                 <!-- <p>Catégorie:</p>
