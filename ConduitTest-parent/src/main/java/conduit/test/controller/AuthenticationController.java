@@ -4,9 +4,9 @@ import conduit.test.config.JwtTokenUtil;
 import conduit.test.controller.auth.JwtRequest;
 import conduit.test.controller.auth.JwtResponse;
 import conduit.test.dto.DtoAccount;
-import conduit.test.dto.DtoVendeur;
+import conduit.test.repository.AccountRepo;
+import conduit.test.repository.dao.DaoAccount;
 import conduit.test.service.AccountDS;
-import conduit.test.service.impl.VendeurWS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-
 
 @RestController
 @CrossOrigin
@@ -37,6 +35,8 @@ public class AuthenticationController {
 
     @Autowired
     private AccountDS accountDS;
+    @Autowired
+    private AccountRepo accountRepo;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,9 +49,10 @@ public class AuthenticationController {
             final UserDetails userDetails = accountDS
                     .loadUserByUsername(authenticationRequest.getUsername());
 
+            DaoAccount user = accountRepo.findByUsername(authenticationRequest.getUsername());
             final String token = jwtTokenUtil.generateToken(userDetails);
 
-            return ResponseEntity.ok(new JwtResponse(token));
+            return ResponseEntity.ok(new JwtResponse(token, user.getRole()));
         } catch (Exception e) {
             logger.error(e.getMessage());
             throw e;
