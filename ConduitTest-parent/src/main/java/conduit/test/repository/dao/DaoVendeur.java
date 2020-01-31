@@ -15,7 +15,7 @@ public class DaoVendeur {
     @Column(unique = true)
     private String username;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "vendeur")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "vendeur")
     private List<DaoArticle> listeArticles;
 
     @ManyToOne

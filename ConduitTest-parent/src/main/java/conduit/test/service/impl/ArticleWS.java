@@ -71,12 +71,18 @@ public class ArticleWS implements IWebService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
-        DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("Vendeur") != 0) {
+//        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+
+        List<DaoArticle> daoArticleList = this.getAlls();
+        DaoArticle newArticle = null;
+        for (DaoArticle daoArticle1 : daoArticleList) {
+            if (daoArticle1.getSerial().compareTo(article.getSerial()) == 0) {
+                newArticle = daoArticle1;
+            }
+        }
+        if (newArticle == null) {
             throw new Exception("Current user is not allowed!");
         }
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        DaoArticle newArticle = articleRepo.findByStatusAndVendeurId(article.getSerial(), vendeur.getId());
 
         if (article != null) {
             newArticle.setSerial(article.getSerial());
@@ -86,10 +92,9 @@ public class ArticleWS implements IWebService {
             newArticle.setPrix(article.getPrix());
             newArticle.setQuantite(article.getQuantite());
 
-            newArticle.setVendeur(vendeur);
             return articleRepo.save(newArticle);
         } else {
-            throw new Exception("Fail to create article!");
+            throw new Exception("Fail to update article!");
         }
     }
 
@@ -105,8 +110,22 @@ public class ArticleWS implements IWebService {
     public void delete(String serial) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
+
+//        DaoAccount account = accountRepo.findByUsername(user.getUsername());
+
+        List<DaoArticle> daoArticleList = this.getAlls();
+        DaoArticle article = null;
+        for (DaoArticle daoArticle : daoArticleList) {
+            if (daoArticle.getSerial().compareTo(serial) == 0) {
+                article = daoArticle;
+            }
+        }
+        if (article == null) {
+            throw new Exception("Current user is not allowed!");
+        }
+
+//        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+//        DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
 
         if (article != null) {
             articleRepo.delete(article);

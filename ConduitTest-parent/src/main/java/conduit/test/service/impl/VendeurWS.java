@@ -59,7 +59,6 @@ public class VendeurWS implements IWebService {
                 newUser.setUsername(vendeur.getUsername());
                 newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
                 newUser.setRole("Vendeur");
-//            newUser.setRole(vendeur.getRole());
                 newUser.setManagername(chefMagasin.getUsername());
                 accountRepo.save(newUser);
 
@@ -72,6 +71,9 @@ public class VendeurWS implements IWebService {
                 throw new Exception("Fail to create vendeur!");
             }
         } catch (Exception e) {
+            if (e.getMessage().compareTo("Current user is not allowed!") == 0) {
+                throw e;
+            }
             throw new Exception("Fail to create vendeur!");
         }
 
@@ -89,16 +91,22 @@ public class VendeurWS implements IWebService {
             if (account.getRole().compareTo("ChefMagasin") != 0) {
                 throw new Exception("Current user is not allowed!");
             }
-            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
-            DaoVendeur newVendeur = vendeurRepo.findByUsername(vendeur.getUsername());
+
+            List<DaoVendeur> daoVemdeurList = this.getAlls();
+            DaoVendeur newVendeur = null;
+            for (DaoVendeur daoVendeur : daoVemdeurList) {
+                if (daoVendeur.getUsername().compareTo(vendeur.getUsername()) == 0) {
+                    newVendeur = daoVendeur;
+                }
+            }
+            if (newVendeur == null) {
+                throw new Exception("Current user is not allowed!");
+            }
 
             if (vendeur != null) {
                 // Update account
                 DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
-//        newUser.setUsername(vendeur.getUsername());
                 newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
-//        newUser.setRole(vendeur.getRole());
-                newUser.setManagername(chefMagasin.getUsername());
                 accountRepo.save(newUser);
 
                 // Update vendeur
@@ -118,12 +126,14 @@ public class VendeurWS implements IWebService {
                     listeArticles.add(newArticle);
                 }
                 newVendeur.setListeArticles(listeArticles);
-                newVendeur.setChefMagasin(chefMagasin);
                 return vendeurRepo.save(newVendeur);
             } else {
                 throw new Exception("Fail to update vendeur!");
             }
         } catch (Exception e) {
+            if (e.getMessage().compareTo("Current user is not allowed!") == 0) {
+                throw e;
+            }
             throw new Exception("Fail to update vendeur!");
         }
     }
@@ -141,6 +151,9 @@ public class VendeurWS implements IWebService {
 
             return vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
         } catch (Exception e) {
+            if (e.getMessage().compareTo("Current user is not allowed!") == 0) {
+                throw e;
+            }
             throw new Exception("Fail to get vendeur!");
         }
     }
@@ -157,6 +170,17 @@ public class VendeurWS implements IWebService {
             }
             DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
+            List<DaoVendeur> daoVemdeurList = this.getAlls();
+            DaoVendeur newVendeur = null;
+            for (DaoVendeur daoVendeur : daoVemdeurList) {
+                if (daoVendeur.getUsername().compareTo(name) == 0) {
+                    newVendeur = daoVendeur;
+                }
+            }
+            if (newVendeur == null) {
+                throw new Exception("Current user is not allowed!");
+            }
+
             DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
             if (vendeur != null) {
                 // Delete account
@@ -169,6 +193,9 @@ public class VendeurWS implements IWebService {
                 throw new Exception("Fail to delete vendeur!");
             }
         } catch (Exception e) {
+            if (e.getMessage().compareTo("Current user is not allowed!") == 0) {
+                throw e;
+            }
             throw new Exception("Fail to delete vendeur!");
         }
     }

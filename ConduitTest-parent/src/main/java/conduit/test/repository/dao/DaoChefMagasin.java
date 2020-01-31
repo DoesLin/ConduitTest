@@ -15,7 +15,7 @@ public class DaoChefMagasin {
     @Column(unique = true)
     private String username;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "chefMagasin")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "chefMagasin")
     private List<DaoVendeur> listeVendeurs;
 
     public long getId() {

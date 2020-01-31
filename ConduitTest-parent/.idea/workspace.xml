@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminArticlesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +39,8 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -37,11 +49,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="conduit.test.unit" />
       <recent name="conduit.test.exception" />
       <recent name="conduit.test.service.impl" />
       <recent name="conduit.test.dao" />
       <recent name="conduit.test.dao.impl" />
-      <recent name="conduit.test.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Utilisateurs\a764954\Documents\S9\CondTest\Code\ConduitTest\ConduitTest-parent\src\test" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -60,6 +75,17 @@
     <configuration name="Run Appli" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="conduit.test.ConduitTestApplication" />
       <module name="ConduitTest-parent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run Appli Test" type="JUnit" factoryName="JUnit">
+      <module name="ConduitTest-parent" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -116,6 +142,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Run Appli" />
+      <item itemvalue="JUnit.Run Appli Test" />
       <item itemvalue="Maven.ConduitTest-parent [install]" />
       <item itemvalue="Maven.ConduitTest-parent [clean]" />
     </list>
@@ -145,5 +172,34 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionTest.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/conduit/test/config/JwtRequestFilter.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesTest.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="username" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
