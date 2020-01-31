@@ -25,7 +25,7 @@ public class ArticlesController {
 //    private List<ArticleMock> articleMocks = createList();
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<?> display() {
+    public ResponseEntity<?> display() throws Exception {
         try {
             List<DtoArticle> listArticles = new ArrayList<DtoArticle>();
 
@@ -38,36 +38,37 @@ public class ArticlesController {
             return ResponseEntity.ok(listArticles);
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return ResponseEntity.ok(null);
+            throw e;
         }
     }
 
     @DeleteMapping(path = {"/{serial}"})
-    public void delete(@PathVariable("serial") String serial) {
+    public void delete(@PathVariable("serial") String serial) throws Exception {
         try {
             articleWS.delete(serial);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            throw e;
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody DtoArticle article) {
+    public ResponseEntity<?> create(@RequestBody DtoArticle article) throws Exception {
         try {
             return ResponseEntity.ok(new DtoArticle(articleWS.create(article)));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return ResponseEntity.ok(null);
+            throw e;
         }
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody DtoArticle article) {
+    public ResponseEntity<?> update(@RequestBody DtoArticle article) throws Exception {
         try {
             return ResponseEntity.ok(new DtoArticle(articleWS.update(article)));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return ResponseEntity.ok(null);
+            throw e;
         }
     }
 

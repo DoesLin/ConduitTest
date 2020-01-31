@@ -94,11 +94,7 @@ public class ArticleWS implements IWebService {
     }
 
     @Override
-    public DaoArticle getById(long id) {
-        throw new UnsupportedOperationException();
-    }
-
-    public DaoArticle getBySerial(String serial) {
+    public DaoArticle getByName(String serial) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
         DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
@@ -106,10 +102,6 @@ public class ArticleWS implements IWebService {
     }
 
     @Override
-    public void delete(long id) {
-        throw new UnsupportedOperationException();
-    }
-
     public void delete(String serial) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();

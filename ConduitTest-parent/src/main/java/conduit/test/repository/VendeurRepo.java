@@ -14,8 +14,8 @@ public interface VendeurRepo extends JpaRepository<DaoVendeur, Long> {
 
     DaoVendeur findByUsername(String username);
 
-    @Query(value = "SELECT * FROM vendeur v WHERE v.id = :id and v.chef_magasin_id = :chef_magasin_id",
+    @Query(value = "SELECT * FROM vendeur v WHERE v.username = :username and v.chef_magasin_id = :chef_magasin_id",
             nativeQuery = true)
-    DaoVendeur findByIdAndChefMagasinId(
-            @Param("id") Long id, @Param("chef_magasin_id") Long chef_magasin_id);
+    DaoVendeur findByUsernameAndChefMagasinId(
+            @Param("username") String username, @Param("chef_magasin_id") Long chef_magasin_id);
 }

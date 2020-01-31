@@ -41,7 +41,7 @@ public class AuthenticationController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         try {
             authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -54,17 +54,17 @@ public class AuthenticationController {
             return ResponseEntity.ok(new JwtResponse(token));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return null;
+            throw e;
         }
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveAccount(@RequestBody DtoAccount account) {
+    public ResponseEntity<?> saveAccount(@RequestBody DtoAccount account) throws Exception {
         try {
             return ResponseEntity.ok(accountDS.create(account));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return null;
+            throw e;
         }
     }
 
@@ -72,9 +72,9 @@ public class AuthenticationController {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
-            logger.error("USER_DISABLED", e);
+            throw new Exception("USER_DISABLED");
         } catch (BadCredentialsException e) {
-            logger.error("INVALID_CREDENTIALS", e);
+            throw new Exception("INVALID_CREDENTIALS");
         }
     }
 }

@@ -51,7 +51,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 logger.error("JWT Token has expired");
             }
         } else {
-            logger.warn("JWT Token does not begin with Bearer String");
+//            logger.info("JWT Token does not begin with Bearer String");
+            logger.info("Visitor mode");
         }
 
         // Once we get the token validate it.
@@ -73,7 +74,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
-        chain.doFilter(request, response);
+        try {
+            chain.doFilter(request, response);
+        } catch (Exception e) {
+            throw new ServletException("Error request");
+        }
     }
 
 }

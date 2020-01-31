@@ -2,55 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/ConduitTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/ConduitTestApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/config/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/JwtRequestFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ArticlesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ArticlesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/controller/VendeursController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/VendeursController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ArticleRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ArticleRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/AccountDS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/ConduitTestApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/JwtAuthenticationEntryPoint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/JwtRequestFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/JwtTokenUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/WebSecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/ArticlesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/AuthenticationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/HelloWorldController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/ProfileController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/VendeursController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/auth/JwtRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/auth/JwtResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoAccount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoArticle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoChefMagasin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoVendeur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/AccountMock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/ArticleMock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/ChefMagasinMock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/VendeurMock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/AccountRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/ArticleRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/ChefMagasinRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/VendeurRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoAccount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoArticle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoChefMagasin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoVendeur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/AccountDS.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/IWebService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/impl/ArticleWS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -84,11 +46,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="conduit.test.exception" />
       <recent name="conduit.test.service.impl" />
       <recent name="conduit.test.dao" />
       <recent name="conduit.test.dao.impl" />
       <recent name="conduit.test.service" />
-      <recent name="conduit.test.dto" />
     </key>
   </component>
   <component name="RunDashboard">

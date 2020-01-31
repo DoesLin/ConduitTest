@@ -40,117 +40,135 @@ public class VendeurWS implements IWebService {
 
     @Override
     public DaoVendeur create(Object object) throws Exception {
-        DtoVendeur vendeur = (DtoVendeur) object;
+        try {
+            DtoVendeur vendeur = (DtoVendeur) object;
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = (User) auth.getPrincipal();
 
-        DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("ChefMagasin") != 0) {
-            throw new Exception("Current user is not allowed!");
-        }
-        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
-        DaoVendeur newVendeur = new DaoVendeur();
+            DaoAccount account = accountRepo.findByUsername(user.getUsername());
+            if (account.getRole().compareTo("ChefMagasin") != 0) {
+                throw new Exception("Current user is not allowed!");
+            }
+            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+            DaoVendeur newVendeur = new DaoVendeur();
 
-        if (vendeur != null) {
-            // Create account
-            DaoAccount newUser = new DaoAccount();
-            newUser.setUsername(vendeur.getUsername());
-            newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
-            newUser.setRole(vendeur.getRole());
-            newUser.setManagername(chefMagasin.getUsername());
-            accountRepo.save(newUser);
+            if (vendeur != null) {
+                // Create account
+                DaoAccount newUser = new DaoAccount();
+                newUser.setUsername(vendeur.getUsername());
+                newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
+                newUser.setRole("Vendeur");
+//            newUser.setRole(vendeur.getRole());
+                newUser.setManagername(chefMagasin.getUsername());
+                accountRepo.save(newUser);
 
-            // Create vendeur
-            newVendeur.setUsername(vendeur.getUsername());
-            newVendeur.setListeArticles(new ArrayList<DaoArticle>());
-            newVendeur.setChefMagasin(chefMagasin);
-            return vendeurRepo.save(newVendeur);
-        } else {
+                // Create vendeur
+                newVendeur.setUsername(vendeur.getUsername());
+                newVendeur.setListeArticles(new ArrayList<DaoArticle>());
+                newVendeur.setChefMagasin(chefMagasin);
+                return vendeurRepo.save(newVendeur);
+            } else {
+                throw new Exception("Fail to create vendeur!");
+            }
+        } catch (Exception e) {
             throw new Exception("Fail to create vendeur!");
         }
+
     }
 
     @Override
     public DaoVendeur update(Object object) throws Exception {
-        DtoVendeur vendeur = (DtoVendeur) object;
+        try {
+            DtoVendeur vendeur = (DtoVendeur) object;
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = (User) auth.getPrincipal();
 
-        DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("ChefMagasin") != 0) {
-            throw new Exception("Current user is not allowed!");
-        }
-        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
-        DaoVendeur newVendeur = vendeurRepo.findByUsername(vendeur.getUsername());
-
-        if (vendeur != null) {
-            // Update account
-            DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
-//        newUser.setUsername(vendeur.getUsername());
-            newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
-//        newUser.setRole(vendeur.getRole());
-            newUser.setManagername(chefMagasin.getUsername());
-            accountRepo.save(newUser);
-
-            // Update vendeur
-            newVendeur.setUsername(vendeur.getUsername());
-            List<DaoArticle> listeArticles = new ArrayList<>();
-            List<DtoArticle> listDtoArticles = vendeur.getListeArticles();
-            for (DtoArticle article : listDtoArticles) {
-                DaoArticle newArticle = new DaoArticle();
-                newArticle.setSerial(article.getSerial());
-                newArticle.setName(article.getName());
-                newArticle.setCategorie(article.getCategorie());
-                newArticle.setDescription(article.getDescription());
-                newArticle.setPrix(article.getPrix());
-                newArticle.setQuantite(article.getQuantite());
-
-                newArticle.setVendeur(newVendeur);
-                listeArticles.add(newArticle);
+            DaoAccount account = accountRepo.findByUsername(user.getUsername());
+            if (account.getRole().compareTo("ChefMagasin") != 0) {
+                throw new Exception("Current user is not allowed!");
             }
-            newVendeur.setListeArticles(listeArticles);
-            newVendeur.setChefMagasin(chefMagasin);
-            return vendeurRepo.save(newVendeur);
-        } else {
-            throw new Exception("Fail to create vendeur!");
+            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+            DaoVendeur newVendeur = vendeurRepo.findByUsername(vendeur.getUsername());
+
+            if (vendeur != null) {
+                // Update account
+                DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
+//        newUser.setUsername(vendeur.getUsername());
+                newUser.setPassword(bcryptEncoder.encode(vendeur.getPassword()));
+//        newUser.setRole(vendeur.getRole());
+                newUser.setManagername(chefMagasin.getUsername());
+                accountRepo.save(newUser);
+
+                // Update vendeur
+                newVendeur.setUsername(vendeur.getUsername());
+                List<DaoArticle> listeArticles = new ArrayList<>();
+                List<DtoArticle> listDtoArticles = vendeur.getListeArticles();
+                for (DtoArticle article : listDtoArticles) {
+                    DaoArticle newArticle = new DaoArticle();
+                    newArticle.setSerial(article.getSerial());
+                    newArticle.setName(article.getName());
+                    newArticle.setCategorie(article.getCategorie());
+                    newArticle.setDescription(article.getDescription());
+                    newArticle.setPrix(article.getPrix());
+                    newArticle.setQuantite(article.getQuantite());
+
+                    newArticle.setVendeur(newVendeur);
+                    listeArticles.add(newArticle);
+                }
+                newVendeur.setListeArticles(listeArticles);
+                newVendeur.setChefMagasin(chefMagasin);
+                return vendeurRepo.save(newVendeur);
+            } else {
+                throw new Exception("Fail to update vendeur!");
+            }
+        } catch (Exception e) {
+            throw new Exception("Fail to update vendeur!");
         }
     }
 
     @Override
-    public DaoVendeur getById(long id) throws Exception {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-        DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("ChefMagasin") != 0) {
-            throw new Exception("Current user is not allowed!");
-        }
-        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+    public DaoVendeur getByName(String name) throws Exception {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = (User) auth.getPrincipal();
+            DaoAccount account = accountRepo.findByUsername(user.getUsername());
+            if (account.getRole().compareTo("ChefMagasin") != 0) {
+                throw new Exception("Current user is not allowed!");
+            }
+            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
-        return vendeurRepo.findByIdAndChefMagasinId(id, chefMagasin.getId());
+            return vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
+        } catch (Exception e) {
+            throw new Exception("Fail to get vendeur!");
+        }
     }
 
     @Override
-    public void delete(long id) throws Exception {
+    public void delete(String name) throws Exception {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-        DaoAccount account = accountRepo.findByUsername(user.getUsername());
-        if (account.getRole().compareTo("ChefMagasin") != 0) {
-            throw new Exception("Current user is not allowed!");
-        }
-        DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = (User) auth.getPrincipal();
+            DaoAccount account = accountRepo.findByUsername(user.getUsername());
+            if (account.getRole().compareTo("ChefMagasin") != 0) {
+                throw new Exception("Current user is not allowed!");
+            }
+            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
-        DaoVendeur vendeur = vendeurRepo.findByIdAndChefMagasinId(id, chefMagasin.getId());
-        if (vendeur != null) {
-            // Delete account
-            DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
-            accountRepo.delete(newUser);
+            DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
+            if (vendeur != null) {
+                // Delete account
+                DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
+                accountRepo.delete(newUser);
 
-            // Delete vendeur
-            vendeurRepo.delete(vendeur);
-        } else {
+                // Delete vendeur
+                vendeurRepo.delete(vendeur);
+            } else {
+                throw new Exception("Fail to delete vendeur!");
+            }
+        } catch (Exception e) {
             throw new Exception("Fail to delete vendeur!");
         }
     }

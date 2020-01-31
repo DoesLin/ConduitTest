@@ -28,7 +28,7 @@ public class VendeursController {
 //    private List<VendeurMock> vendeurMocks = createList();
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<?> display() {
+    public ResponseEntity<?> display() throws Exception {
         try {
             List<DtoVendeur> listVendeurs = new ArrayList<DtoVendeur>();
 
@@ -40,36 +40,37 @@ public class VendeursController {
             return ResponseEntity.ok(listVendeurs);
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return ResponseEntity.ok(null);
+            throw e;
         }
     }
 
-    @DeleteMapping(path = {"/{id}"})
-    public void delete(@PathVariable("id") long id) {
+    @DeleteMapping(path = {"/{name}"})
+    public void delete(@PathVariable("name") String name) throws Exception {
         try {
-            vendeurWS.delete(id);
+            vendeurWS.delete(name);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            throw e;
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody DtoVendeur vendeur) {
+    public ResponseEntity<?> create(@RequestBody DtoVendeur vendeur) throws Exception {
         try {
             return ResponseEntity.ok(new DtoVendeur(vendeurWS.create(vendeur)));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return ResponseEntity.ok(null);
+            throw e;
         }
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody DtoVendeur vendeur) {
+    public ResponseEntity<?> update(@RequestBody DtoVendeur vendeur) throws Exception {
         try {
             return ResponseEntity.ok(new DtoVendeur(vendeurWS.update(vendeur)));
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return ResponseEntity.ok(null);
+            throw e;
         }
     }
 

@@ -3,6 +3,7 @@ package conduit.test.dto;
 import conduit.test.repository.dao.DaoArticle;
 import conduit.test.repository.dao.DaoVendeur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -16,6 +17,7 @@ public class DtoVendeur extends DtoAccount {
 
     public DtoVendeur() {
         super();
+        listeArticles = new ArrayList<>();
     }
 
     /**
@@ -29,6 +31,7 @@ public class DtoVendeur extends DtoAccount {
         this.setManagername(vendeur.getChefMagasin().getUsername());
         this.setRole("Vendeur");
         List<DaoArticle> listDaoArticles = vendeur.getListeArticles();
+        listeArticles = new ArrayList<>();
         for (DaoArticle daoArticle : listDaoArticles) {
             DtoArticle article = new DtoArticle(daoArticle);
             listeArticles.add(article);
