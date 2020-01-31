@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article, HttpClientService } from '../service/httpclient.service';
 import { Router } from '@angular/router';
-import { ArticleDataService } from '../service/article-data.service';
+import { ArticleDataService } from '../service/transferdata/article-data.service';
 
 @Component({
   selector: 'app-article-modif',

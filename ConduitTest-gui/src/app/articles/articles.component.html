@@ -34,7 +34,7 @@
 	</div>
 	<br><br><br>
 	<div class="form-group" data-toggle="buttons" align="center">
-		<button class="btn btn-success" (click)="addArticle()">Ajouter</button>
+		<button *ngIf="loginService.isVendeur()" class="btn btn-success" (click)="addArticle()">Ajouter</button>
 		<!-- <label class="btn">
 			<a href="article">Ajouter</a>
 		</label> -->

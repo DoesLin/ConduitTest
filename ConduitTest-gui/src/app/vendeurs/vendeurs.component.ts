@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService, Vendeur } from '../service/httpclient.service';
 import { Router } from '@angular/router';
-import { ArticleDataService } from '../service/article-data.service';
-import { VendeurDataService } from '../service/vendeur-data.service';
+import { ArticleDataService } from '../service/transferdata/article-data.service';
+import { VendeurDataService } from '../service/transferdata/vendeur-data.service';
 
 declare var $: any
 

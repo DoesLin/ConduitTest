@@ -15,7 +15,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
-import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor.service';
+import { BasicAuthHtppInterceptorService } from './service/authentication/basic-auth-htpp-interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
 import { ArticleModifComponent } from './article-modif/article-modif.component';

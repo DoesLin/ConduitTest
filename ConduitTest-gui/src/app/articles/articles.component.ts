@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService, Article } from '../service/httpclient.service';
 import { Router } from '@angular/router';
-import { ArticleDataService } from '../service/article-data.service';
+import { ArticleDataService } from '../service/transferdata/article-data.service';
+import { AuthenticationService } from '../service/authentication/authentication.service';
 
 declare var $: any
 
@@ -17,6 +18,7 @@ export class ArticlesComponent implements OnInit {
 
   constructor(private router: Router,
     private httpClientService: HttpClientService,
+    private loginService: AuthenticationService,
     private articledata: ArticleDataService) { }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Vendeur, HttpClientService } from '../service/httpclient.service';
 import { Router } from '@angular/router';
-import { VendeurDataService } from '../service/vendeur-data.service';
+import { VendeurDataService } from '../service/transferdata/vendeur-data.service';
 
 @Component({
   selector: 'app-vendeur-modif',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService } from '../service/authentication/authentication.service';
 
 declare function initDropdown(): any;
 declare function initTooltip(): any;

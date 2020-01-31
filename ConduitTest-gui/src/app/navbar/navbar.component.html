@@ -43,7 +43,7 @@
 <ul id="slide-out" class="sidenav center">
     <li><a id="home" routerLink="/articles" routerLinkActive="active">Home</a>
     </li>
-    <li><a *ngIf="loginService.isUserLoggedIn()" id="vendeurs" routerLink="/vendeurs"
+    <li><a *ngIf="loginService.isPermissionChefMagasin()" id="vendeurs" routerLink="/vendeurs"
             routerLinkActive="active">Vendeur</a></li>
     <li><a *ngIf="loginService.isUserLoggedIn()" id="chefmagasins" routerLink="/chefmagasins"
             routerLinkActive="active">Chef de magasin</a></li>

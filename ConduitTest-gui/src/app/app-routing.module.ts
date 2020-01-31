@@ -7,12 +7,13 @@ import { ModificationuserComponent } from './modificationuser/modificationuser.c
 import { VendeursComponent } from './vendeurs/vendeurs.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { CdmajoutComponent } from './cdmajout/cdmajout.component';
-import { AuthGaurdService } from './service/auth-gaurd.service';
+import { AuthGaurdService } from './service/authentication/auth-gaurd.service';
 import { LogoutComponent } from './logout/logout.component';
 import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
 import { ArticleModifComponent } from './article-modif/article-modif.component';
 import { VendeurAjoutComponent } from './vendeur-ajout/vendeur-ajout.component';
 import { VendeurModifComponent } from './vendeur-modif/vendeur-modif.component';
+import { AuthGaurdChefmagasinService } from './service/authentication/auth-gaurd-chefmagasin.service';
 
 
 const routes: Routes = [
@@ -42,15 +43,15 @@ const routes: Routes = [
   }, {
     path: 'vendeurs',
     component: VendeursComponent,
-    canActivate: [AuthGaurdService],
+    canActivate: [AuthGaurdChefmagasinService],
   }, {
     path: 'vendeur-ajout',
     component: VendeurAjoutComponent,
-    canActivate: [AuthGaurdService],
+    canActivate: [AuthGaurdChefmagasinService],
   }, {
     path: 'vendeur-modif',
     component: VendeurModifComponent,
-    canActivate: [AuthGaurdService],
+    canActivate: [AuthGaurdChefmagasinService],
   }, {
     path: 'ajoutuser',
     component: AjoutuserComponent,
