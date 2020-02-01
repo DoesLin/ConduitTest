@@ -10,7 +10,7 @@ public class DaoChefMagasin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(unique = true)
     private String username;
@@ -18,11 +18,11 @@ public class DaoChefMagasin {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "chefMagasin")
     private List<DaoVendeur> listeVendeurs;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

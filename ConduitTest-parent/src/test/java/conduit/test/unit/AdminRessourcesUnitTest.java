@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AdminRessourcesTest {
+public class AdminRessourcesUnitTest {
 
     @Autowired
     private AccountDS accountDS;
@@ -118,6 +118,13 @@ public class AdminRessourcesTest {
             vendeurWS.delete(vendeurCorrect.getUsername());
         } catch (Exception e) {
             Assert.fail("No exception should be thrown");
+        }
+        try {
+            setSecurityContext(chefMagasin);
+            vendeurWS.getByName(vendeurCorrect.getUsername());
+            Assert.fail("Exception should be thrown");
+        } catch (Exception e) {
+            Assert.assertEquals("Fail to get vendeur!", e.getMessage());
         }
     }
 

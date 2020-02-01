@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,14 +100,23 @@ public class ArticleWS implements IWebService {
     }
 
     @Override
-    public DaoArticle getByName(String serial) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-        return articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
+    public DaoArticle getByName(String serial) throws Exception {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = (User) auth.getPrincipal();
+            DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
+            DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
+            if (article == null) {
+                throw new Exception();
+            }
+            return article;
+        } catch (Exception e){
+            throw new Exception("Fail to get article!");
+        }
     }
 
     @Override
+    @Transactional
     public void delete(String serial) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
@@ -128,7 +138,7 @@ public class ArticleWS implements IWebService {
 //        DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
 
         if (article != null) {
-            articleRepo.delete(article);
+            articleRepo.deleteBySerial(article.getSerial());
         } else {
             throw new Exception("Fail to delete article!");
         }

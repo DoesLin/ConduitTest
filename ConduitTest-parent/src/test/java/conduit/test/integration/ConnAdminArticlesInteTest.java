@@ -1,4 +1,4 @@
-package conduit.test.unit;
+package conduit.test.integration;
 
 import conduit.test.config.JwtTokenUtil;
 import conduit.test.dto.DtoAccount;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AdminArticlesTest {
+public class ConnAdminArticlesInteTest {
 
     @Autowired
     private AccountDS accountDS;
@@ -60,71 +60,48 @@ public class AdminArticlesTest {
     }
 
     @Test
-    public void test1AjoutArticles() {
+    public void test1ConnexionAdminArticlesDesAutres() {
 
         try {
-            setSecurityContext(accountVendeur);
+            setSecurityContext(accountVendeur2);
             articleWS.create(articleCorrect);
         } catch (Exception e) {
             Assert.fail("No exception should be thrown");
         }
         try {
-            setSecurityContext(account);
-            articleWS.create(articleCorrect);
+            setSecurityContext(accountVendeur);
+            articleWS.update(articleCorrect);
             Assert.fail("Exception should be thrown");
         } catch (Exception e) {
             Assert.assertEquals("Current user is not allowed!", e.getMessage());
         }
+    }
+
+    @Test
+    public void test2ConnexionAdminArticles() {
         try {
-            setSecurityContext(accountVendeur);
+            setSecurityContext(accountVendeur2);
+            articleWS.delete(articleCorrect.getSerial());
+        } catch (Exception e) {
+            Assert.fail("No exception should be thrown");
+        }
+        try {
+            setSecurityContext(accountVendeur2);
+            articleWS.getByName(articleCorrect.getSerial());
+            Assert.fail("Exception should be thrown");
+        } catch (Exception e) {
+            Assert.assertEquals("Fail to get article!", e.getMessage());
+        }
+    }
+
+    @Test
+    public void test3ConnexionAdminArticlesIncorrecte() {
+        try {
+            setSecurityContext(accountVendeur2);
             articleWS.create(articleIncorrect);
             Assert.fail("Exception should be thrown");
         } catch (Exception e) {
             Assert.assertEquals("Fail to create article!", e.getMessage());
-        }
-    }
-
-    @Test
-    public void test2ModifArticles() {
-        try {
-            setSecurityContext(accountVendeur);
-            articleWS.update(articleCorrect);
-        } catch (Exception e) {
-            Assert.fail("No exception should be thrown");
-        }
-
-        try {
-            setSecurityContext(accountVendeur2);
-            articleWS.update(articleCorrect);
-            Assert.fail("Exception should be thrown");
-        } catch (Exception e) {
-            Assert.assertEquals("Current user is not allowed!", e.getMessage());
-        }
-
-        try {
-            setSecurityContext(account);
-            articleWS.update(articleCorrect);
-        } catch (Exception e) {
-            Assert.fail("No exception should be thrown");
-        }
-    }
-
-    @Test
-    public void test3DeleteArticles() {
-
-        try {
-            setSecurityContext(accountVendeur2);
-            articleWS.delete(articleCorrect.getSerial());
-            Assert.fail("Exception should be thrown");
-        } catch (Exception e) {
-            Assert.assertEquals("Current user is not allowed!", e.getMessage());
-        }
-
-        try {
-            setSecurityContext(accountVendeur);
-            articleWS.delete(articleCorrect.getSerial());
-        } catch (Exception e) {
-            Assert.fail("No exception should be thrown");
         }
     }
 

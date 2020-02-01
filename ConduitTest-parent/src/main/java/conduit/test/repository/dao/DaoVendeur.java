@@ -10,7 +10,7 @@ public class DaoVendeur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(unique = true)
     private String username;
@@ -21,11 +21,11 @@ public class DaoVendeur {
     @ManyToOne
     private DaoChefMagasin chefMagasin;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

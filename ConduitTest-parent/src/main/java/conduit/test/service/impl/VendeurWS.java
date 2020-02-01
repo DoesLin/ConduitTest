@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,7 +150,11 @@ public class VendeurWS implements IWebService {
             }
             DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
-            return vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
+            DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
+            if (vendeur == null) {
+                throw new Exception("");
+            }
+            return vendeur;
         } catch (Exception e) {
             if (e.getMessage().compareTo("Current user is not allowed!") == 0) {
                 throw e;
@@ -159,6 +164,7 @@ public class VendeurWS implements IWebService {
     }
 
     @Override
+    @Transactional
     public void delete(String name) throws Exception {
 
         try {
@@ -188,7 +194,7 @@ public class VendeurWS implements IWebService {
                 accountRepo.delete(newUser);
 
                 // Delete vendeur
-                vendeurRepo.delete(vendeur);
+                vendeurRepo.deleteByUsername(vendeur.getUsername());
             } else {
                 throw new Exception("Fail to delete vendeur!");
             }
