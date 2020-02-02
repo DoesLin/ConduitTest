@@ -3,6 +3,7 @@
 
 
 # Parent
+Parent project was generated with spring-boot-starter-parent version 2.1.1.RELEASE.
 
 ## Development server
 
