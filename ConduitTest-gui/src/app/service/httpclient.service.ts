@@ -21,6 +21,14 @@ export class Vendeur {
   ) { }
 }
 
+export class ChefMagasin {
+  constructor(
+    public username: string,
+    public password: string,
+    public managername: string,
+  ) { }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +36,7 @@ export class HttpClientService {
 
   ArticleUrl = 'http://localhost:8080/articles';
   VendeurUrl = 'http://localhost:8080/vendeurs';
+  ChefMagasinUrl = 'http://localhost:8080/chefmagasins';
 
   constructor(
     private httpClient: HttpClient
@@ -64,6 +73,22 @@ export class HttpClientService {
 
   public deleteVendeur(vendeur) {
     return this.httpClient.delete<Vendeur>(this.VendeurUrl + "/" + vendeur.username);
+  }
+
+  getChefMagasins() {
+    return this.httpClient.get<ChefMagasin[]>(this.ChefMagasinUrl);
+  }
+
+  public createChefMagasin(vendeur) {
+    return this.httpClient.post<ChefMagasin>(this.ChefMagasinUrl, vendeur);
+  }
+
+  public modifyChefMagasin(vendeur) {
+    return this.httpClient.put<ChefMagasin>(this.ChefMagasinUrl, vendeur);
+  }
+
+  public deleteChefMagasin(vendeur) {
+    return this.httpClient.delete<ChefMagasin>(this.ChefMagasinUrl + "/" + vendeur.username);
   }
 
 }

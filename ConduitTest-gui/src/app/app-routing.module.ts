@@ -1,12 +1,8 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { PdgComponent } from './pdg/pdg.component';
-import { AjoutuserComponent } from './ajoutuser/ajoutuser.component';
-import { ModificationuserComponent } from './modificationuser/modificationuser.component';
 import { VendeursComponent } from './vendeurs/vendeurs.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { AuthGaurdService } from './service/authentication/auth-gaurd.service';
 import { LogoutComponent } from './logout/logout.component';
 import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
@@ -14,6 +10,9 @@ import { ArticleModifComponent } from './article-modif/article-modif.component';
 import { VendeurAjoutComponent } from './vendeur-ajout/vendeur-ajout.component';
 import { VendeurModifComponent } from './vendeur-modif/vendeur-modif.component';
 import { AuthGaurdChefmagasinService } from './service/authentication/auth-gaurd-chefmagasin.service';
+import { ChefmagasinsComponent } from './chefmagasins/chefmagasins.component';
+import { ChefmagasinAjoutComponent } from './chefmagasin-ajout/chefmagasin-ajout.component';
+import { ChefmagasinModifComponent } from './chefmagasin-modif/chefmagasin-modif.component';
 
 
 const routes: Routes = [
@@ -53,21 +52,17 @@ const routes: Routes = [
     component: VendeurModifComponent,
     canActivate: [AuthGaurdChefmagasinService],
   }, {
-    path: 'ajoutuser',
-    component: AjoutuserComponent,
-    canActivate: [AuthGaurdService],
-  }, {
-    path: 'modificationuser',
-    component: ModificationuserComponent,
-    canActivate: [AuthGaurdService],
-  }, {
     path: 'chefmagasins',
-    component: PdgComponent,
-    canActivate: [AuthGaurdService],
+    component: ChefmagasinsComponent,
+    canActivate: [AuthGaurdChefmagasinService],
   }, {
-    path: 'cdmajout',
-    component: CdmajoutComponent,
-    canActivate: [AuthGaurdService],
+    path: 'chefmagasin-ajout',
+    component: ChefmagasinAjoutComponent,
+    canActivate: [AuthGaurdChefmagasinService],
+  }, {
+    path: 'chefmagasin-modif',
+    component: ChefmagasinModifComponent,
+    canActivate: [AuthGaurdChefmagasinService],
   },
 ];
 

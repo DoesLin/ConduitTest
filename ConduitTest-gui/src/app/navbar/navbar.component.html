@@ -45,7 +45,7 @@
     </li>
     <li><a *ngIf="loginService.isPermissionChefMagasin()" id="vendeurs" routerLink="/vendeurs"
             routerLinkActive="active">Vendeur</a></li>
-    <li><a *ngIf="loginService.isUserLoggedIn()" id="chefmagasins" routerLink="/chefmagasins"
+    <li><a *ngIf="loginService.isPermissionPdg()" id="chefmagasins" routerLink="/chefmagasins"
             routerLinkActive="active">Chef de magasin</a></li>
     <li>
         <div class="divider"></div>

@@ -7,12 +7,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { PdgComponent } from './pdg/pdg.component';
-import { AjoutuserComponent } from './ajoutuser/ajoutuser.component';
-import { ModificationuserComponent } from './modificationuser/modificationuser.component';
 import { VendeursComponent } from './vendeurs/vendeurs.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { CdmajoutComponent } from './cdmajout/cdmajout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
 import { BasicAuthHtppInterceptorService } from './service/authentication/basic-auth-htpp-interceptor.service';
@@ -21,6 +17,9 @@ import { ArticleAjoutComponent } from './article-ajout/article-ajout.component';
 import { ArticleModifComponent } from './article-modif/article-modif.component';
 import { VendeurAjoutComponent } from './vendeur-ajout/vendeur-ajout.component';
 import { VendeurModifComponent } from './vendeur-modif/vendeur-modif.component';
+import { ChefmagasinsComponent } from './chefmagasins/chefmagasins.component';
+import { ChefmagasinAjoutComponent } from './chefmagasin-ajout/chefmagasin-ajout.component';
+import { ChefmagasinModifComponent } from './chefmagasin-modif/chefmagasin-modif.component';
 
 
 
@@ -31,17 +30,16 @@ import { VendeurModifComponent } from './vendeur-modif/vendeur-modif.component';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    PdgComponent,
-    AjoutuserComponent,
-    ModificationuserComponent,
     VendeursComponent,
     ArticlesComponent,
-    CdmajoutComponent,
     LogoutComponent,
     ArticleAjoutComponent,
     ArticleModifComponent,
     VendeurAjoutComponent,
     VendeurModifComponent,
+    ChefmagasinsComponent,
+    ChefmagasinAjoutComponent,
+    ChefmagasinModifComponent,
   ],
   imports: [
     BrowserModule,

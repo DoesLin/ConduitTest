@@ -61,6 +61,12 @@ export class AuthenticationService {
   isPermissionChefMagasin() {
     let user = sessionStorage.getItem('username')
     let permission = sessionStorage.getItem('permission')
-    return !(user === null) && (permission === "ChefMagasin")
+    return !(user === null) && ((permission === "ChefMagasin") || (permission === "Pdg"))
+  }
+
+  isPermissionPdg() {
+    let user = sessionStorage.getItem('username')
+    let permission = sessionStorage.getItem('permission')
+    return !(user === null) && (permission === "Pdg")
   }
 }
