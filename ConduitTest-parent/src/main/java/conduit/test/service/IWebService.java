@@ -4,6 +4,9 @@ import conduit.test.repository.dao.DaoArticle;
 
 import java.util.List;
 
+/**
+ * Interface of web service
+ */
 public interface IWebService {
     public abstract Object getByName(String name) throws Exception;
 
