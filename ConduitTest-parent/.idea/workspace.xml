@@ -2,27 +2,91 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ChefMagasinsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoPdg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/PdgRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoPdg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ChefMagasinWS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/auth/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/mock/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/functional/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/integration/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ChefMagasinRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ChefMagasinRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoChefMagasin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/functional/ApplicationFuncTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/functional/ApplicationFuncTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnAdminRessourcesInteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnAdminRessourcesInteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/ConduitTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/ConduitTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/IWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ConduitTest-parent-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ConduitTest-parent-1.0-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/ConduitTestApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/InitData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/JwtAuthenticationEntryPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/JwtRequestFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/JwtTokenUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/config/WebSecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/ArticlesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/AuthenticationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/ChefMagasinsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/HelloWorldController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/ProfileController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/VendeursController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/auth/JwtRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/controller/auth/JwtResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoArticle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoChefMagasin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoPdg.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/dto/DtoVendeur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/AccountMock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/ArticleMock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/ChefMagasinMock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/mock/VendeurMock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/AccountRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/ArticleRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/ChefMagasinRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/PdgRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/VendeurRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoArticle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoChefMagasin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoPdg.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/repository/dao/DaoVendeur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/AccountDS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/IWebService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/impl/ArticleWS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/impl/ChefMagasinWS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/conduit/test/service/impl/VendeurWS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2020-02-02T16-34-57_143-jvmRun1.dump" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.functional.ApplicationFuncTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.integration.ConnAdminArticlesInteTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.integration.ConnAdminRessourcesInteTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.integration.ConnexionInteTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.unit.AdminArticlesUnitTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.unit.AdminRessourcesUnitTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-conduit.test.unit.ConnexionUnitTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.functional.ApplicationFuncTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.integration.ConnAdminArticlesInteTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.integration.ConnAdminRessourcesInteTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.integration.ConnexionInteTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.unit.AdminArticlesUnitTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.unit.AdminRessourcesUnitTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/conduit.test.unit.ConnexionUnitTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/functional/ApplicationFuncTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/integration/ConnAdminArticlesInteTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/integration/ConnAdminRessourcesInteTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/integration/ConnexionInteTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/unit/AdminArticlesUnitTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/unit/AdminRessourcesUnitTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/conduit/test/unit/ConnexionUnitTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/mockito-extensions/org.mockito.plugins.MockMaker" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +99,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="package-info" />
       </list>
     </option>
   </component>
@@ -79,7 +144,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.ConduitTest-parent [install]">
+  <component name="RunManager" selected="Maven.ConduitTest-parent [clean]">
     <configuration name="Run Appli" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="conduit.test.ConduitTestApplication" />
       <module name="ConduitTest-parent" />

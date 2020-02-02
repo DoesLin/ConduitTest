@@ -1,0 +1,13 @@
+conduit.test
+conduit.test.config
+conduit.test.controller
+conduit.test.controller.auth
+conduit.test.dto
+conduit.test.functional
+conduit.test.integration
+conduit.test.mock
+conduit.test.repository
+conduit.test.repository.dao
+conduit.test.service
+conduit.test.service.impl
+conduit.test.unit
