@@ -5,28 +5,21 @@
                 <li><a><i class="material-icons">menu</i></a></li>
             </ul>
             <ul id="home" class="hide-on-med-and-down">
-                <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/articles" routerLinkActive="active">Home</a></li>
             </ul>
-                  
+
             <ul id="listIcons" class="right">
+
                 <li>
-                    <a id="userDoc" target="_blank" href="{{documentationLink}}"
-                        class="tooltipped pull-down nav-top-section-title" data-position="bottom"
-                        data-tooltip="User Documentation">
-                        <i class="large material-icons">chrome_reader_mode</i>
-                    </a>
-                </li>
-                <li>
-                    <a id="bugDeclaration" href="mailto:{{teamDevMail}}"
-                        class="tooltipped pull-down nav-top-section-title" data-position="bottom"
-                        data-tooltip="Declare a bug">
-                        <i class="large material-icons">bug_report</i>
+                    <a *ngIf="loginService.isUserLoggedIn()" id="logout" href="/logout" data-position="bottom"
+                        data-tooltip=" Logout">
+                        <i class="large material-icons">logout</i>
                     </a>
                 </li>
             </ul>
 
 
-            <form action="" class="browser-default right">
+            <!-- <form action="" class="browser-default right">
                 <input id="search-input" placeholder="Search" type="text" class="browser-default search-field" name="q"
                     value="" autocomplete="off" aria-label="Search box">
                 <label for="search-input"><i class="material-icons search-icon">search</i></label>
@@ -42,26 +35,21 @@
                         </ul>
                     </div>
                 </div>
-            </form>
+            </form> -->
         </div>
     </nav>
 </div>
 
 <ul id="slide-out" class="sidenav center">
-    <li>
-        <img style="margin-top: 5%;" width="200" height="100"
-            src="https://worldline.com/content/dam/gotomarket/logo/logo-worldline.png" class="responsive-img" />
+    <li><a id="home" routerLink="/articles" routerLinkActive="active">Home</a>
     </li>
-    <li><a id="home" routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a id="project" routerLink="/project" routerLinkActive="active">Project</a></li>
-    <li><a id="service" routerLink="/service" routerLinkActive="active">Service</a></li>
-    <li><a id="report" routerLink="/report" routerLinkActive="active">Report</a></li>
-    <li><a id="administration" routerLink="/administration" routerLinkActive="active">Administration</a></li>
-    <!-- <li><a id="feature" routerLink="/feature" routerLinkActive="active">Feature</a></li>
-    <li><a id="about" routerLink="/feature" routerLinkActive="active">About</a></li>
-    <li><a id="contact" routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    <li><a *ngIf="loginService.isPermissionChefMagasin()" id="vendeurs" routerLink="/vendeurs"
+            routerLinkActive="active">Vendeur</a></li>
+    <li><a *ngIf="loginService.isPermissionPdg()" id="chefmagasins" routerLink="/chefmagasins"
+            routerLinkActive="active">Chef de magasin</a></li>
     <li>
         <div class="divider"></div>
-    </li> -->
-    <!-- <li><a class="sidenav-close">Collapse</a></li> -->
+    </li>
+    <li><a *ngIf="loginService.isUserLoggedIn()" id="logout" routerLink="/logout" routerLinkActive="active">Logout</a>
+    </li>
 </ul>

@@ -7,9 +7,9 @@ var config = {
   finalZipName: 'dist'
 };
 var gulp = require('gulp'),
-    maven = require('maven-deploy');
+  maven = require('maven-deploy');
 var mavenConfig = {
-  "groupId": "net.atos.m2m",
+  "groupId": "polytech.tours",
   "artifactId": config.appName,
   "version": config.appVersion,
   "buildDir": config.appDir,
@@ -17,19 +17,19 @@ var mavenConfig = {
   "type": "zip",
   "fileEncoding": "utf-8",
   "repositories": [{
-    "id": "kazan-release-repo",
-    "url": "http://kazan.priv.atos.fr/nexus/content/repositories/releases"
+    "id": "conduittest-release-repo",
+    "url": "./releases"
   }, {
-    "id": "kazan-snapshot-repo",
-    "url": "http://kazan.priv.atos.fr/nexus/content/repositories/snapshots"
+    "id": "conduittest-snapshot-repo",
+    "url": "./snapshots"
   }]
 };
 maven.config(mavenConfig);
-gulp.task('install', function() {
+gulp.task('install', function () {
   maven.install();
 });
-gulp.task('deploy', function() {
+gulp.task('deploy', function () {
   var isSnapshot = config.appVersion.indexOf("-SNAPSHOT") > -1;
-  var repoId = isSnapshot ? "kazan-snapshot-repo" : "kazan-release-repo";
+  var repoId = isSnapshot ? "conduittest-snapshot-repo" : "conduittest-release-repo";
   maven.deploy(repoId, isSnapshot);
 });

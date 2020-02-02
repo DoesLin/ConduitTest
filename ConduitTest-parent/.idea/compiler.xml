@@ -6,37 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ConduitTest-api" />
-        <module name="ConduitTest-batch" />
-        <module name="ConduitTest-common" />
-        <module name="ConduitTest-dao" />
-        <module name="ConduitTest-mock" />
-        <module name="ConduitTest-core" />
-        <module name="ConduitTest-ws" />
+        <module name="ConduitTest-parent" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ConduitTest-api" target="1.8" />
-      <module name="ConduitTest-batch" target="1.8" />
-      <module name="ConduitTest-common" target="1.8" />
-      <module name="ConduitTest-core" target="1.8" />
-      <module name="ConduitTest-dao" target="1.8" />
-      <module name="ConduitTest-mock" target="1.8" />
-      <module name="ConduitTest-parent" target="1.8" />
-      <module name="ConduitTest-ws" target="1.8" />
-      <module name="gs-maven" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ConduitTest-api" options="-parameters" />
-      <module name="ConduitTest-batch" options="-parameters" />
-      <module name="ConduitTest-common" options="-parameters" />
-      <module name="ConduitTest-core" options="-parameters" />
-      <module name="ConduitTest-dao" options="-parameters" />
-      <module name="ConduitTest-mock" options="-parameters" />
       <module name="ConduitTest-parent" options="-parameters" />
-      <module name="ConduitTest-ws" options="-parameters" />
     </option>
   </component>
 </project>
