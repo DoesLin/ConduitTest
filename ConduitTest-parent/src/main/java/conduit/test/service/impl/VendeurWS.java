@@ -89,13 +89,14 @@ public class VendeurWS implements IWebService {
             User user = (User) auth.getPrincipal();
 
             DaoAccount account = accountRepo.findByUsername(user.getUsername());
-            if (account.getRole().compareTo("ChefMagasin") != 0) {
+            if (account.getRole().compareTo("ChefMagasin") != 0 &&
+                    account.getRole().compareTo("Pdg") != 0) {
                 throw new Exception("Current user is not allowed!");
             }
 
-            List<DaoVendeur> daoVemdeurList = this.getAlls();
+            List<DaoVendeur> daoVendeurList = this.getAlls();
             DaoVendeur newVendeur = null;
-            for (DaoVendeur daoVendeur : daoVemdeurList) {
+            for (DaoVendeur daoVendeur : daoVendeurList) {
                 if (daoVendeur.getUsername().compareTo(vendeur.getUsername()) == 0) {
                     newVendeur = daoVendeur;
                 }
@@ -112,21 +113,6 @@ public class VendeurWS implements IWebService {
 
                 // Update vendeur
                 newVendeur.setUsername(vendeur.getUsername());
-                List<DaoArticle> listeArticles = new ArrayList<>();
-                List<DtoArticle> listDtoArticles = vendeur.getListeArticles();
-                for (DtoArticle article : listDtoArticles) {
-                    DaoArticle newArticle = new DaoArticle();
-                    newArticle.setSerial(article.getSerial());
-                    newArticle.setName(article.getName());
-                    newArticle.setCategorie(article.getCategorie());
-                    newArticle.setDescription(article.getDescription());
-                    newArticle.setPrix(article.getPrix());
-                    newArticle.setQuantite(article.getQuantite());
-
-                    newArticle.setVendeur(newVendeur);
-                    listeArticles.add(newArticle);
-                }
-                newVendeur.setListeArticles(listeArticles);
                 return vendeurRepo.save(newVendeur);
             } else {
                 throw new Exception("Fail to update vendeur!");
@@ -145,15 +131,27 @@ public class VendeurWS implements IWebService {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             User user = (User) auth.getPrincipal();
             DaoAccount account = accountRepo.findByUsername(user.getUsername());
-            if (account.getRole().compareTo("ChefMagasin") != 0) {
+            if (account.getRole().compareTo("ChefMagasin") != 0 &&
+                    account.getRole().compareTo("Pdg") != 0) {
                 throw new Exception("Current user is not allowed!");
             }
-            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
-            DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
-            if (vendeur == null) {
-                throw new Exception("");
+            List<DaoVendeur> daoVendeurList = this.getAlls();
+            DaoVendeur vendeur = null;
+            for (DaoVendeur daoVendeur : daoVendeurList) {
+                if (daoVendeur.getUsername().compareTo(name) == 0) {
+                    vendeur = daoVendeur;
+                }
             }
+            if (vendeur == null) {
+                throw new Exception("Current user is not allowed!");
+            }
+//            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+//
+//            DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
+//            if (vendeur == null) {
+//                throw new Exception("");
+//            }
             return vendeur;
         } catch (Exception e) {
             if (e.getMessage().compareTo("Current user is not allowed!") == 0) {
@@ -171,23 +169,24 @@ public class VendeurWS implements IWebService {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             User user = (User) auth.getPrincipal();
             DaoAccount account = accountRepo.findByUsername(user.getUsername());
-            if (account.getRole().compareTo("ChefMagasin") != 0) {
+            if (account.getRole().compareTo("ChefMagasin") != 0 &&
+                    account.getRole().compareTo("Pdg") != 0) {
                 throw new Exception("Current user is not allowed!");
             }
-            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
+//            DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
 
-            List<DaoVendeur> daoVemdeurList = this.getAlls();
-            DaoVendeur newVendeur = null;
-            for (DaoVendeur daoVendeur : daoVemdeurList) {
+            List<DaoVendeur> daoVendeurList = this.getAlls();
+            DaoVendeur vendeur = null;
+            for (DaoVendeur daoVendeur : daoVendeurList) {
                 if (daoVendeur.getUsername().compareTo(name) == 0) {
-                    newVendeur = daoVendeur;
+                    vendeur = daoVendeur;
                 }
             }
-            if (newVendeur == null) {
+            if (vendeur == null) {
                 throw new Exception("Current user is not allowed!");
             }
 
-            DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
+//            DaoVendeur vendeur = vendeurRepo.findByUsernameAndChefMagasinId(name, chefMagasin.getId());
             if (vendeur != null) {
                 // Delete account
                 DaoAccount newUser = accountRepo.findByUsername(vendeur.getUsername());
@@ -218,8 +217,10 @@ public class VendeurWS implements IWebService {
         } else if (account.getRole().compareTo("ChefMagasin") == 0) {
             DaoChefMagasin chefMagasin = chefMagasinRepo.findByUsername(user.getUsername());
             return chefMagasin.getListeVendeurs();
-        } else {
+        } else if (account.getRole().compareTo("Pdg") == 0) {
             return vendeurRepo.findAll();
+        } else {
+            throw new Exception("Current user is not allowed!");
         }
     }
 }

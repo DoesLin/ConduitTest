@@ -1,12 +1,7 @@
 package conduit.test.config;
 
-import conduit.test.repository.AccountRepo;
-import conduit.test.repository.ChefMagasinRepo;
-import conduit.test.repository.VendeurRepo;
-import conduit.test.repository.dao.DaoAccount;
-import conduit.test.repository.dao.DaoArticle;
-import conduit.test.repository.dao.DaoChefMagasin;
-import conduit.test.repository.dao.DaoVendeur;
+import conduit.test.repository.*;
+import conduit.test.repository.dao.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -21,16 +16,31 @@ public class InitData {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Bean
-    CommandLineRunner initDatabase(ChefMagasinRepo chefMagasinRepo, VendeurRepo vendeurRepo, AccountRepo accountRepo, PasswordEncoder bcryptEncoder) {
+    CommandLineRunner initDatabase(PdgRepo pdgRepo, ChefMagasinRepo chefMagasinRepo, VendeurRepo vendeurRepo,
+                                   AccountRepo accountRepo, ArticleRepo articleRepo, PasswordEncoder bcryptEncoder) {
         return args -> {
+
             DaoAccount newUser = new DaoAccount();
             newUser.setUsername("root");
             newUser.setPassword(bcryptEncoder.encode("password"));
-            newUser.setRole("ChefMagasin");
+            newUser.setRole("Pdg");
             newUser.setManagername(null);
+
+            DaoPdg newPdg = new DaoPdg();
+            newPdg.setUsername(newUser.getUsername());
+
+            logger.info("Preloading " + pdgRepo.save(newPdg));
+            logger.info("Preloading " + accountRepo.save(newUser));
+
+            newUser = new DaoAccount();
+            newUser.setUsername("chefmagasin");
+            newUser.setPassword(bcryptEncoder.encode("password"));
+            newUser.setRole("ChefMagasin");
+            newUser.setManagername(newPdg.getUsername());
 
             DaoChefMagasin newChefMagasin = new DaoChefMagasin();
             newChefMagasin.setUsername(newUser.getUsername());
+            newChefMagasin.setPdg(newPdg);
 
             logger.info("Preloading " + chefMagasinRepo.save(newChefMagasin));
             logger.info("Preloading " + accountRepo.save(newUser));
@@ -48,6 +58,17 @@ public class InitData {
             logger.info("Preloading " + vendeurRepo.save(newVendeur));
             logger.info("Preloading " + accountRepo.save(newUser));
 
+            DaoArticle newArticle = new DaoArticle();
+            newArticle.setSerial("serial777");
+            newArticle.setName("article");
+            newArticle.setCategorie("cate");
+            newArticle.setDescription("desc");
+            newArticle.setPrix(7.7);
+            newArticle.setQuantite(1);
+            newArticle.setVendeur(newVendeur);
+
+            logger.info("Preloading " + articleRepo.save(newArticle));
+
             newUser = new DaoAccount();
             newUser.setUsername("vendeur2");
             newUser.setPassword(bcryptEncoder.encode("password"));
@@ -62,28 +83,19 @@ public class InitData {
             logger.info("Preloading " + accountRepo.save(newUser));
 
             newUser = new DaoAccount();
-            newUser.setUsername("chefmagasin");
-            newUser.setPassword(bcryptEncoder.encode("password"));
-            newUser.setRole("ChefMagasin");
-            newUser.setManagername(null);
-
-            newChefMagasin = new DaoChefMagasin();
-            newChefMagasin.setUsername(newUser.getUsername());
-
-            logger.info("Preloading " + chefMagasinRepo.save(newChefMagasin));
-            logger.info("Preloading " + accountRepo.save(newUser));
-
-            newUser = new DaoAccount();
             newUser.setUsername("chefmagasin2");
             newUser.setPassword(bcryptEncoder.encode("password"));
             newUser.setRole("ChefMagasin");
-            newUser.setManagername(null);
+            newUser.setManagername(newPdg.getUsername());
 
             newChefMagasin = new DaoChefMagasin();
             newChefMagasin.setUsername(newUser.getUsername());
+            newChefMagasin.setPdg(newPdg);
 
             logger.info("Preloading " + chefMagasinRepo.save(newChefMagasin));
             logger.info("Preloading " + accountRepo.save(newUser));
+
+            logger.info("Finish initDatabase");
         };
     }
 }

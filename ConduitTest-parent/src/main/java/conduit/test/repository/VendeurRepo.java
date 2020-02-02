@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface VendeurRepo extends JpaRepository<DaoVendeur, Integer> {
-//public interface UserDao extends CrudRepository<DAOUser, Integer> {
 
     DaoVendeur findByUsername(String username);
 

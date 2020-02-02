@@ -6,11 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "account")
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name="role",
-//        discriminatorType = DiscriminatorType.STRING)
-//@DiscriminatorValue("account")
-//@MappedSuperclass
 public class DaoAccount {
 
     @Id

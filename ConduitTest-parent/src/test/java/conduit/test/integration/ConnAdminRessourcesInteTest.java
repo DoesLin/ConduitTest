@@ -83,7 +83,7 @@ public class ConnAdminRessourcesInteTest {
             vendeurWS.getByName(vendeurCorrect.getUsername());
             Assert.fail("Exception should be thrown");
         } catch (Exception e) {
-            Assert.assertEquals("Fail to get vendeur!", e.getMessage());
+            Assert.assertEquals("Current user is not allowed!", e.getMessage());
         }
     }
 

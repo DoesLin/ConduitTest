@@ -13,16 +13,14 @@ public class DtoVendeur extends DtoAccount {
 
     private List<DtoArticle> listeArticles;
 
-//    private DtoChefMagasin chefMagasin;
-
     public DtoVendeur() {
         super();
         listeArticles = new ArrayList<>();
     }
 
     /**
-     * Username, ..., ChefMagasin est copie aussi
-     * id, listeArticles ne sont pas copies
+     * Username, ..., ChefMagasin, listeArticles est copie aussi
+     * id n'est pas copies
      * @param vendeur
      */
     public DtoVendeur(DaoVendeur vendeur) {
@@ -36,7 +34,6 @@ public class DtoVendeur extends DtoAccount {
             DtoArticle article = new DtoArticle(daoArticle);
             listeArticles.add(article);
         }
-//        this.setChefMagasin(new DtoChefMagasin(vendeur.getChefMagasin()));
     }
 
     public List<DtoArticle> getListeArticles() {
@@ -47,11 +44,4 @@ public class DtoVendeur extends DtoAccount {
         this.listeArticles = listeArticles;
     }
 
-//    public DtoChefMagasin getChefMagasin() {
-//        return chefMagasin;
-//    }
-//
-//    public void setChefMagasin(DtoChefMagasin chefMagasin) {
-//        this.chefMagasin = chefMagasin;
-//    }
 }

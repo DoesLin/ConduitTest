@@ -69,11 +69,6 @@ public class ArticleWS implements IWebService {
     public DaoArticle update(Object object) throws Exception {
         DtoArticle article = (DtoArticle) object;
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-
-//        DaoAccount account = accountRepo.findByUsername(user.getUsername());
-
         List<DaoArticle> daoArticleList = this.getAlls();
         DaoArticle newArticle = null;
         for (DaoArticle daoArticle1 : daoArticleList) {
@@ -118,10 +113,6 @@ public class ArticleWS implements IWebService {
     @Override
     @Transactional
     public void delete(String serial) throws Exception {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-
-//        DaoAccount account = accountRepo.findByUsername(user.getUsername());
 
         List<DaoArticle> daoArticleList = this.getAlls();
         DaoArticle article = null;
@@ -133,10 +124,6 @@ public class ArticleWS implements IWebService {
         if (article == null) {
             throw new Exception("Current user is not allowed!");
         }
-
-//        DaoVendeur vendeur = vendeurRepo.findByUsername(user.getUsername());
-//        DaoArticle article = articleRepo.findByStatusAndVendeurId(serial, vendeur.getId());
-
         if (article != null) {
             articleRepo.deleteBySerial(article.getSerial());
         } else {
@@ -166,8 +153,10 @@ public class ArticleWS implements IWebService {
             return listListArticles.stream()
                     .flatMap(List::stream)
                     .collect(Collectors.toList());
-        } else {
+        } else if (account.getRole().compareTo("Pdg") == 0){
             return articleRepo.findAll();
+        } else {
+            throw new Exception("Current user is not allowed!");
         }
     }
 }

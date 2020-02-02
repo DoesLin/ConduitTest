@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd368fd-cdfe-410b-8031-82bc781ab83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/functional/ApplicationFuncTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnAdminArticlesInteTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnAdminRessourcesInteTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnexionInteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/controller/ChefMagasinsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoPdg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/PdgRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoPdg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ChefMagasinWS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ArticleRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ArticleRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/config/InitData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoChefMagasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/dto/DtoVendeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ChefMagasinRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/ChefMagasinRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/VendeurRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoArticle.java" afterDir="false" />
@@ -15,10 +19,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/repository/dao/DaoVendeur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/ArticleWS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminArticlesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminArticlesUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/functional/ApplicationFuncTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/functional/ApplicationFuncTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnAdminRessourcesInteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/integration/ConnAdminRessourcesInteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionUnitTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,11 +57,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="conduit.test.functional" />
-      <recent name="conduit.test.unit" />
-      <recent name="conduit.test.exception" />
+      <recent name="conduit.test.controller" />
+      <recent name="conduit.test.dto" />
       <recent name="conduit.test.service.impl" />
-      <recent name="conduit.test.dao" />
+      <recent name="conduit.test.repository" />
+      <recent name="conduit.test.repository.dao" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Utilisateurs\a764954\Documents\S9\CondTest\Code\ConduitTest\ConduitTest-parent\src\test" />
@@ -75,7 +79,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.ConduitTest-parent [clean]">
+  <component name="RunManager" selected="Maven.ConduitTest-parent [install]">
     <configuration name="Run Appli" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="conduit.test.ConduitTestApplication" />
       <module name="ConduitTest-parent" />
@@ -210,24 +214,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/conduit/test/unit/ConnexionUnitTest.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/conduit/test/config/JwtRequestFilter.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/conduit/test/unit/AdminRessourcesUnitTest.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/conduit/test/service/impl/VendeurWS.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="22" />
+          <line>87</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

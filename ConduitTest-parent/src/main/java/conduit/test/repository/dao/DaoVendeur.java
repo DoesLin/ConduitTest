@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@DiscriminatorValue("vendeur")
 @Table(name = "vendeur")
 public class DaoVendeur {
 

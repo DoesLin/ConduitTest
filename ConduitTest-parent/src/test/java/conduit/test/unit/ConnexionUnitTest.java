@@ -35,7 +35,6 @@ public class ConnexionUnitTest {
 
     @Test
     public void test1Connexion() {
-
         try {
             accountDS.createAuthenticationToken(new JwtRequest(
                     accountCorrect.getUsername(), accountCorrect.getPassword()));

@@ -3,7 +3,6 @@ package conduit.test.repository.dao;
 import javax.persistence.*;
 
 @Entity
-//@DiscriminatorValue("vendeur")
 @Table(name = "article")
 public class DaoArticle {
 

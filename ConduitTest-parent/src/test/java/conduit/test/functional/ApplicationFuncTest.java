@@ -1,12 +1,10 @@
 package conduit.test.functional;
 
 import conduit.test.config.JwtTokenUtil;
-import conduit.test.dto.DtoAccount;
-import conduit.test.dto.DtoArticle;
-import conduit.test.dto.DtoChefMagasin;
-import conduit.test.dto.DtoVendeur;
+import conduit.test.dto.*;
 import conduit.test.service.AccountDS;
 import conduit.test.service.impl.ArticleWS;
+import conduit.test.service.impl.ChefMagasinWS;
 import conduit.test.service.impl.VendeurWS;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -32,14 +30,19 @@ public class ApplicationFuncTest {
     private ArticleWS articleWS;
     @Autowired
     private VendeurWS vendeurWS;
+    @Autowired
+    private ChefMagasinWS chefMagasinWS;
 
     private static DtoAccount account = new DtoAccount();
     private static DtoAccount accountVendeur = new DtoAccount();
     private static DtoAccount accountVendeur2 = new DtoAccount();
     private static DtoArticle articleCorrect = new DtoArticle();
     private static DtoArticle articleCorrect2 = new DtoArticle();
+    private static DtoPdg pdg = new DtoPdg();
+    private static DtoPdg pdg2 = new DtoPdg();
     private static DtoChefMagasin chefMagasin = new DtoChefMagasin();
     private static DtoChefMagasin chefMagasin2 = new DtoChefMagasin();
+    private static DtoChefMagasin chefMagasinCorrect = new DtoChefMagasin();
     private static DtoVendeur vendeurCorrect = new DtoVendeur();
 
     @BeforeClass
@@ -66,10 +69,18 @@ public class ApplicationFuncTest {
         articleCorrect2.setPrix(7.7);
         articleCorrect2.setQuantite(1);
 
+        pdg.setUsername("root");
+        pdg.setPassword("password");
+        pdg2.setUsername("root2");
+        pdg2.setPassword("password");
+
         chefMagasin.setUsername("chefmagasin");
         chefMagasin.setPassword("password");
         chefMagasin2.setUsername("chefmagasin2");
         chefMagasin2.setPassword("password");
+
+        chefMagasinCorrect.setUsername("chefmagasinCorrect");
+        chefMagasinCorrect.setPassword("password");
 
         vendeurCorrect.setUsername("vendeurCorrect");
         vendeurCorrect.setPassword("password");
@@ -155,7 +166,7 @@ public class ApplicationFuncTest {
             vendeurWS.getByName(vendeurCorrect.getUsername());
             Assert.fail("Exception should be thrown");
         } catch (Exception e) {
-            Assert.assertEquals("Fail to get vendeur!", e.getMessage());
+            Assert.assertEquals("Current user is not allowed!", e.getMessage());
         }
         try {
             setSecurityContext(chefMagasin);
@@ -169,33 +180,35 @@ public class ApplicationFuncTest {
     @Test
     public void test3Pdg() {
         try {
-            setSecurityContext(chefMagasin);
+            setSecurityContext(pdg);
+            chefMagasinWS.create(chefMagasinCorrect);
+            setSecurityContext(chefMagasinCorrect);
             vendeurWS.create(vendeurCorrect);
             setSecurityContext(vendeurCorrect);
             articleWS.create(articleCorrect2);
 
-            setSecurityContext(chefMagasin);
+            setSecurityContext(chefMagasinCorrect);
             vendeurWS.update(vendeurCorrect);
             articleWS.update(articleCorrect2);
         } catch (Exception e) {
             Assert.fail("No exception should be thrown");
         }
         try {
-            setSecurityContext(chefMagasin);
+            setSecurityContext(chefMagasinCorrect);
             articleWS.delete(articleCorrect2.getSerial());
             vendeurWS.delete(vendeurCorrect.getUsername());
         } catch (Exception e) {
             Assert.fail("No exception should be thrown");
         }
         try {
-            setSecurityContext(chefMagasin);
+            setSecurityContext(chefMagasinCorrect);
             vendeurWS.getByName(vendeurCorrect.getUsername());
             Assert.fail("Exception should be thrown");
         } catch (Exception e) {
-            Assert.assertEquals("Fail to get vendeur!", e.getMessage());
+            Assert.assertEquals("Current user is not allowed!", e.getMessage());
         }
         try {
-            setSecurityContext(chefMagasin);
+            setSecurityContext(chefMagasinCorrect);
             articleWS.getByName(articleCorrect.getSerial());
             Assert.fail("Exception should be thrown");
         } catch (Exception e) {
